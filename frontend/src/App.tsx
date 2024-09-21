@@ -1,10 +1,11 @@
 import { QueryClient } from "@tanstack/react-query";
 import { MedusaProvider } from "medusa-react";
 import Products from "./Products";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
+import Footer from "./components/Footer";
 
 i18next
   .use(initReactI18next)
@@ -26,6 +27,7 @@ const App = () => {
     >
       <Navbar />
       <Products />
+      <Footer />
     </MedusaProvider>
   );
 };
