@@ -7,6 +7,7 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 import Landing from "./components/Landing";
 import Layout from "./components/Layout";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 i18next
   .use(initReactI18next)
@@ -31,6 +32,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </Layout>
       </BrowserRouter>
