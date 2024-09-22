@@ -20,6 +20,7 @@ const footerStyle: React.CSSProperties = {
   width: "100%",
   boxShadow: "0 -1px 5px rgba(0,0,0,0.1)",
   color: "#fff",
+  height: "4em",
 };
 
 export default Footer;
