@@ -1,13 +1,11 @@
 import { QueryClient } from "@tanstack/react-query";
 import { MedusaProvider } from "medusa-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Products from "./Products";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
-import Landing from "./components/Landing";
 import Layout from "./components/Layout";
-import PrivacyPolicy from "./components/PrivacyPolicy";
+import { listPathElement } from "./utils/listPathElement";
 
 i18next
   .use(initReactI18next)
@@ -30,9 +28,10 @@ const App = () => {
       <BrowserRouter>
         <Layout>
           <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            {listPathElement.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+            ;
           </Routes>
         </Layout>
       </BrowserRouter>

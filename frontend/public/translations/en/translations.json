@@ -8,5 +8,10 @@
     "privacy-policy": {
         "name": "Privacy Policy",
         "content": "This Privacy Policy describes how your personal information is collected, used, and shared when you visit or make a purchase from vinocolor.com (the 'Site')."
+    },
+    "breadcrumbs": {
+        "home": "Home",
+        "products": "Products",
+        "privacy_policy": "Privacy Policy"
     }
 }
