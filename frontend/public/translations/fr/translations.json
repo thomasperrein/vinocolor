@@ -4,5 +4,9 @@
     },
     "products": {
         "name": "Produits"
+    },
+    "privacy-policy": {
+        "name": "Politique de vie privée",
+        "content": "Cette politique de confidentialité décrit comment vos informations personnelles sont collectées, utilisées et partagées lorsque vous visitez ou effectuez un achat sur vinocolor.com (le 'Site')."
     }
 }

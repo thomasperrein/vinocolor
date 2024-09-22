@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-  const { t, i18n } = useTranslation("en", { useSuspense: false });
+  const { t, i18n } = useTranslation("fr", { useSuspense: false });
 
   const handleLangChange = (event: ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(event.target.value);
