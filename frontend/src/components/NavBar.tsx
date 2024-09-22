@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation("en", { useSuspense: false });
@@ -9,21 +10,25 @@ export default function Navbar() {
   };
 
   return (
-    <div className="border border-b border-gray-200">
-      <div className="container flex justify-between my-4">
-        <span>{t("landing.description")}</span>
-
-        <div>
-          <div className="pl-10 inline-flex">
-            <select className="p-2" onChange={handleLangChange}>
-              <option value="fr" selected>
-                FR
-              </option>
-              <option value="en">EN</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">{t("landing.name")}</Link>
+        </li>
+        <li>
+          <Link to="/products">{t("products.name")}</Link>
+        </li>
+        <li className="pl-10 inline-flex">
+          <select
+            className="p-2"
+            onChange={handleLangChange}
+            defaultValue={"fr"}
+          >
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
+          </select>
+        </li>
+      </ul>
+    </nav>
   );
 }

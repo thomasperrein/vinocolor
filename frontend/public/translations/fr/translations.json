@@ -1,6 +1,8 @@
 {
     "landing": {
-        "title": "Bienvenue sur la page d'accueil",
-        "description": "C'est la page d'accueil"
+        "name": "Accueil"
+    },
+    "products": {
+        "name": "Produits"
     }
 }
