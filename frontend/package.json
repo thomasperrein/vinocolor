@@ -11,11 +11,16 @@
   },
   "dependencies": {
     "@medusajs/medusa": "^1.20.10",
+    "@medusajs/medusa-js": "^6.1.9",
+    "@stripe/react-stripe-js": "^2.8.0",
+    "@stripe/stripe-js": "^4.5.0",
     "@tanstack/react-query": "^4.36.1",
+    "bootstrap": "^5.3.3",
     "i18next": "^23.15.1",
     "i18next-http-backend": "^2.6.1",
     "medusa-react": "^9.0.18",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.2",
     "react-router-dom": "^6.26.2"
