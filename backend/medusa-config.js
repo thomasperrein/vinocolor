@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const { resolve } = require("path");
 
 let ENV_FILE_NAME = "";
 switch (process.env.NODE_ENV) {
@@ -52,6 +53,12 @@ const plugins = [
       },
     },
   },
+  {
+    resolve: "medusa-payment-stripe",
+    options: {
+      api_key: process.env.STRIPE_SECRET_KEY,
+    },
+  }
 ];
 
 const modules = {
