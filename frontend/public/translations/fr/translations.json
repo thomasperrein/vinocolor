@@ -1,6 +1,7 @@
 {
     "landing": {
-        "name": "Accueil"
+        "name": "Accueil",
+        "loading": "Chargement..."
     },
     "products": {
         "name": "Produits"
@@ -13,5 +14,13 @@
         "home": "Accueil",
         "products": "Produits",
         "privacy_policy": "Politique de confidentialité"
+    },
+    "product": {
+        "name": "Produit",
+        "price": "Prix",
+        "quantity": "Quantité",
+        "add_to_cart": "Ajouter au panier",
+        "remove_from_cart": "Retirer du panier",
+        "loading": "Chargement..."
     }
 }

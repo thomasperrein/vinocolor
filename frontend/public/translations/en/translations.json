@@ -1,6 +1,7 @@
 {
     "landing": {
-        "name": "Home"
+        "name": "Home",
+        "loading": "Loading..."
     },
     "products": {
         "name": "Products"
@@ -13,5 +14,13 @@
         "home": "Home",
         "products": "Products",
         "privacy_policy": "Privacy Policy"
+    },
+    "product": {
+        "name": "Product",
+        "price": "Price",
+        "quantity": "Quantity",
+        "add_to_cart": "Add to cart",
+        "remove_from_cart": "Remove from cart",
+        "loading": "Loading..."
     }
 }
