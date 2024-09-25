@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { useProduct } from "medusa-react";
+import { useCart, useCreateLineItem, useProduct } from "medusa-react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,38 @@ export default function Product() {
   const { id } = useParams();
   const { product, isLoading } = useProduct(id!);
   const { t } = useTranslation();
+
+  const cartId = localStorage.getItem("cart_id") || "error";
+
+  const { createCart } = useCart();
+
+  const handleCreateCart = () => {
+    createCart.mutate(
+      {},
+      {
+        onSuccess: ({ cart }) => {
+          console.log("creation cart");
+          localStorage.setItem("cart_id", cart.id);
+        },
+      }
+    );
+  };
+
+  const createLineItem = useCreateLineItem(cartId);
+
+  const handleAddItem = (variantId: string, quantity: number) => {
+    createLineItem.mutate(
+      {
+        variant_id: variantId,
+        quantity,
+      },
+      {
+        onSuccess: ({ cart }) => {
+          console.log("la", cart.items);
+        },
+      }
+    );
+  };
 
   return (
     <div>
@@ -34,7 +66,16 @@ export default function Product() {
               <Button
                 variant="success"
                 size="lg"
-                onClick={() => console.log("ajout")}
+                onClick={() => {
+                  if (product.variants[0].id) {
+                    console.log("cart", cartId);
+                    if (cartId == "error") {
+                      handleCreateCart();
+                    } else {
+                      handleAddItem(product.variants[0].id, 1);
+                    }
+                  }
+                }}
               >
                 {t("product.add_to_cart")}
               </Button>

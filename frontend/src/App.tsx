@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { MedusaProvider } from "medusa-react";
+import { CartProvider, MedusaProvider } from "medusa-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
@@ -25,16 +25,18 @@ const App = () => {
       queryClientProviderProps={{ client: queryClient }}
       baseUrl="http://localhost:9000"
     >
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            {listPathElement.map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
-            ;
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Layout>
+            <Routes>
+              {listPathElement.map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
+              ;
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </CartProvider>
     </MedusaProvider>
   );
 };

@@ -3,8 +3,16 @@
         "name": "Home",
         "loading": "Loading..."
     },
-    "products": {
-        "name": "Products"
+    "cart":{
+        "name": "Cart",
+        "empty": "Your cart is empty",
+        "checkout": "Checkout",
+        "total": "Total",
+        "remove": "Remove",
+        "fetch_error": "Error fetching cart",
+        "error": "Error",
+        "loading": "Loading...",
+        "items_in_cart" : "Items in cart"
     },
     "privacy-policy": {
         "name": "Privacy Policy",
@@ -13,7 +21,8 @@
     "breadcrumbs": {
         "home": "Home",
         "products": "Products",
-        "privacy_policy": "Privacy Policy"
+        "privacy_policy": "Privacy Policy",
+        "my_cart": "Cart"
     },
     "product": {
         "name": "Product",

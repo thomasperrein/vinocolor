@@ -3,8 +3,16 @@
         "name": "Accueil",
         "loading": "Chargement..."
     },
-    "products": {
-        "name": "Produits"
+    "cart":{
+        "name": "Panier",
+        "empty": "Votre panier est vide",
+        "checkout": "Commander",
+        "total": "Total",
+        "remove": "Retirer",
+        "fetch_error": "Erreur lors de la récupération du panier",
+        "error": "Erreur",
+        "loading": "Chargement...",
+        "items_in_cart": "Articles dans le panier"
     },
     "privacy-policy": {
         "name": "Politique de confidentialité",
@@ -13,7 +21,8 @@
     "breadcrumbs": {
         "home": "Accueil",
         "products": "Produits",
-        "privacy_policy": "Politique de confidentialité"
+        "privacy_policy": "Politique de confidentialité",
+        "my_cart": "Panier"
     },
     "product": {
         "name": "Produit",
