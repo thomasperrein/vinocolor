@@ -30,6 +30,9 @@ export default function Navbar() {
               <option value="en">EN</option>
             </select>
           </li>
+          <li>
+            <Link to="/my-cart">{t("cart.name")}</Link>
+          </li>
         </ul>
       </nav>
       <Breadcrumbs />
