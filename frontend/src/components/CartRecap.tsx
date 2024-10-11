@@ -1,5 +1,6 @@
 import { useGetCart } from "medusa-react";
 import { useEffect, useState } from "react";
+import { getFormattedPrice } from "../utils/getFormattedPrice";
 
 export default function CartRecap() {
   const cartId = localStorage.getItem("cart_id") || "error";
@@ -8,13 +9,18 @@ export default function CartRecap() {
 
   useEffect(() => {
     if (cart?.items) {
+      // Calculer le total des articles
       const cartTotal = cart.items.reduce(
         (sum, item) => sum + item.quantity * item.unit_price,
         0
       );
-      setTotalPrice(cartTotal);
+
+      // Ajouter le prix de la livraison si disponible
+      const shippingTotal = cart?.shipping_total || 0;
+
+      setTotalPrice(cartTotal + shippingTotal);
     }
-  }, [cart?.items]);
+  }, [cart?.items, cart?.shipping_total]);
 
   if (cartId === "error") {
     return <div>Erreur: aucun panier trouvé.</div>;
@@ -61,7 +67,12 @@ export default function CartRecap() {
           </ul>
           <div>
             <p>
-              <strong>Total:</strong> {(totalPrice / 100).toFixed(2)}{" "}
+              <strong>Livraison:</strong>{" "}
+              {getFormattedPrice(cart.shipping_total!)}{" "}
+              {cart.region.currency_code.toUpperCase()}
+            </p>
+            <p>
+              <strong>Total:</strong> {getFormattedPrice(totalPrice)}{" "}
               {cart.region.currency_code.toUpperCase()}
             </p>
           </div>

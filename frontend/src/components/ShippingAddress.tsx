@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { useUpdateCart } from "medusa-react";
 
-export default function ShippingAddress() {
-  const cartId = localStorage.getItem("cart_id") || "error";
+interface ShippingAddressProps {
+  onAddressUpdateSuccess: () => void;
+  cartId: string;
+}
+
+export default function ShippingAddress({
+  onAddressUpdateSuccess,
+  cartId,
+}: ShippingAddressProps) {
   const updateCart = useUpdateCart(cartId);
 
   const [address, setAddress] = useState({
@@ -12,7 +19,7 @@ export default function ShippingAddress() {
     address_1: "",
     address_2: "",
     city: "",
-    country_code: "FR", // Par défaut France, ajustez si besoin
+    country_code: "fr",
     province: "",
     postal_code: "",
     phone: "",
@@ -43,6 +50,7 @@ export default function ShippingAddress() {
       {
         onSuccess: () => {
           console.log("Adresse de livraison mise à jour avec succès !");
+          onAddressUpdateSuccess();
         },
         onError: (error) => {
           console.log(error);
