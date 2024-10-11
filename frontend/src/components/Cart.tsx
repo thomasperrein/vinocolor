@@ -102,6 +102,9 @@ const Cart = () => {
               {cart.region.currency_code.toUpperCase()}
             </p>
           </div>
+          <button>
+            <a href="/checkout">{t("cart.checkout")}</a>
+          </button>
         </div>
       )}
     </div>

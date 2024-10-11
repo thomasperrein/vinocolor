@@ -1,4 +1,5 @@
 import Cart from "../components/Cart";
+import Checkout from "../components/Checkout";
 import Landing from "../components/Landing";
 import PrivacyPolicy from "../components/PrivacyPolicy";
 import Product from "../components/Product";
@@ -8,4 +9,5 @@ export const listPathElement = [
   { path: "/privacy-policy", element: <PrivacyPolicy /> },
   { path: "/:id", element: <Product /> },
   { path: "/my-cart", element: <Cart /> },
+  { path: "/checkout", element: <Checkout /> },
 ];
