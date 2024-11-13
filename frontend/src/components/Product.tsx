@@ -23,6 +23,21 @@ export default function Product() {
         onSuccess: ({ cart }) => {
           console.log("creation cart");
           localStorage.setItem("cart_id", cart.id);
+          console.log("affectation cust");
+          fetch(`http://localhost:9000/store/carts/${cart.id}`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "x-publishable-api-key": import.meta.env
+                .VITE_REACT_APP_MEDUSA_PUBLISHABLE_API_KEY,
+            },
+            body: JSON.stringify({
+              customer_id: "cus_01JCK1EDMWFK1S3H0B0FNMR0PV",
+            }),
+          })
+            .then((res) => res.json())
+            .then((res) => console.log(res));
+          console.log("no error");
         },
       }
     );
@@ -71,6 +86,7 @@ export default function Product() {
                     console.log("cart", cartId);
                     if (cartId == "error") {
                       handleCreateCart();
+                      handleAddItem(product.variants[0].id, 1);
                     } else {
                       handleAddItem(product.variants[0].id, 1);
                     }

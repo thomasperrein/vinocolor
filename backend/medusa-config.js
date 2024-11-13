@@ -74,6 +74,18 @@ const modules = {
       redisUrl: REDIS_URL
     }
   },*/
+  resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/payment-stripe",
+            id: "stripe",
+            options: {
+              apiKey: process.env.STRIPE_API_KEY,
+            },
+          },
+        ],
+      },
 };
 
 /** @type {import('@medusajs/medusa').ConfigModule["projectConfig"]} */
