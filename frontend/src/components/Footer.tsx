@@ -4,23 +4,41 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer style={footerStyle}>
-      <p>&copy; {currentYear} Mon Projet. Tous droits réservés.</p>
+    <footer>
+      <div style={fundStyle}></div>
+      <div style={footerStyle}>
+        <div style={separatorStyle}></div>
+        <p style={paragraphStyle}>
+          Copyright © {currentYear} Vinocolor Inc. Tous droits réservés.
+        </p>
+      </div>
     </footer>
   );
 };
 
 const footerStyle: React.CSSProperties = {
-  backgroundColor: "#242424",
   textAlign: "center",
-  padding: "10px",
-  position: "fixed",
-  left: 0,
-  bottom: 0,
   width: "100%",
-  boxShadow: "0 -1px 5px rgba(0,0,0,0.1)",
-  color: "#fff",
-  height: "4em",
+  position: "sticky",
+  bottom: 0,
+  zIndex: 100,
+  background: "#FFFFFF",
+};
+const separatorStyle: React.CSSProperties = {
+  width: "calc(100% - 184px)",
+  borderTop: "3px solid var(--secondary-color)",
+  margin: "0 auto",
+};
+
+const paragraphStyle: React.CSSProperties = {
+  marginTop: "20px",
+  marginBottom: "40px",
+};
+
+const fundStyle: React.CSSProperties = {
+  height: "20px",
+  top: "-20px",
+  background: "linear-gradient(to top, #fff, transparent)",
 };
 
 export default Footer;

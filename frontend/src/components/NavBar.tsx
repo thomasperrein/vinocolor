@@ -1,7 +1,6 @@
 import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import Breadcrumbs from "./Breadcrumbs";
 import logo from "../assets/logo/logo.svg";
 import cart from "../assets/logo/cart.svg";
 import "./Navbar.css";
@@ -53,7 +52,6 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-      <Breadcrumbs />
     </header>
   );
 }

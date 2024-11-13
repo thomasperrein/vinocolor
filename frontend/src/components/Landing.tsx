@@ -5,6 +5,7 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import { useTranslation } from "react-i18next";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import { useNavigate } from "react-router-dom";
+import HeroSection from "./HeroSection";
 
 export default function Landing() {
   const { products, isLoading } = useProducts();
@@ -20,6 +21,7 @@ export default function Landing() {
   ) : (
     <>
       <main>
+        <HeroSection />
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
           {products?.map((product: PricedProduct) => {
             if (product.variants.length > 0 && product.variants[0].prices) {

@@ -24,7 +24,9 @@ const App = () => {
     <MedusaProvider
       queryClientProviderProps={{ client: queryClient }}
       baseUrl="http://localhost:9000"
-      publishableApiKey={import.meta.env.REACT_APP_MEDUSA_PUBLISHABLE_API_KEY}
+      publishableApiKey={
+        import.meta.env.VITE_REACT_APP_MEDUSA_PUBLISHABLE_API_KEY
+      }
     >
       <CartProvider>
         <BrowserRouter>

@@ -18,7 +18,7 @@
     transform: translate(-50%, -50%) rotate(-135deg);
     width: 1.5em;
     height: 1.5em;
-    border: solid #ffb300;
+    border: solid var(--primary-color);
     border-width: 0 0.2em 0.2em 0;
     display: inline-block;
     border-radius: 0.2em;
