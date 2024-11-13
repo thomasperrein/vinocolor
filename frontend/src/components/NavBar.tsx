@@ -2,6 +2,9 @@ import { ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import Breadcrumbs from "./Breadcrumbs";
+import logo from "../assets/logo/logo.svg";
+import cart from "../assets/logo/cart.svg";
+import "./Navbar.css";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation("fr", { useSuspense: false });
@@ -12,15 +15,20 @@ export default function Navbar() {
 
   return (
     <header>
-      <nav>
-        <ul>
+      <nav className="navbar">
+        <ul className="nav-list nav-left">
           <li>
-            <Link to="/">{t("landing.name")}</Link>
+            <Link to="/">
+              <img src={logo} alt="Logo" />
+            </Link>
           </li>
           <li>
-            <Link to="/products">{t("products.name")}</Link>
+            <Link to="/">{t("layout.home")}</Link>
           </li>
-          <li className="pl-10 inline-flex">
+          <li>
+            <Link to="/products">{t("layout.products")}</Link>
+          </li>
+          <li>
             <select
               className="p-2"
               onChange={handleLangChange}
@@ -30,8 +38,18 @@ export default function Navbar() {
               <option value="en">EN</option>
             </select>
           </li>
+        </ul>
+        <ul className="nav-list nav-right">
           <li>
-            <Link to="/my-cart">{t("cart.name")}</Link>
+            <Link to="/about">{t("layout.about")}</Link>
+          </li>
+          <li>
+            <Link to="/contact">{t("layout.contact")}</Link>
+          </li>
+          <li>
+            <Link to="/my-cart">
+              <img src={cart} alt="cart" />
+            </Link>
           </li>
         </ul>
       </nav>

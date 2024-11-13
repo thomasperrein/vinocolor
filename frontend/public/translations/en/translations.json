@@ -31,5 +31,11 @@
         "add_to_cart": "Add to cart",
         "remove_from_cart": "Remove from cart",
         "loading": "Loading..."
+    },
+    "layout": {
+        "home": "Home",
+        "products": "Products",
+        "about" : "About",
+        "contact" : "Contact"
     }
 }

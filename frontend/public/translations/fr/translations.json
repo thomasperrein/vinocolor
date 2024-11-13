@@ -31,5 +31,11 @@
         "add_to_cart": "Ajouter au panier",
         "remove_from_cart": "Retirer du panier",
         "loading": "Chargement..."
+    },
+    "layout": {
+        "home": "Accueil",
+        "products": "Produits",
+        "about" : "À propos",
+        "contact" : "Contact"
     }
 }

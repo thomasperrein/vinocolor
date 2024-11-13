@@ -1,0 +1,37 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-top: 50px;
+  text-decoration: none;
+}
+
+ul.nav-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-left {
+    margin-left: 92px;
+    align-items: center;
+}
+
+.nav-right {
+    margin-right: 92px;
+    align-items: center;
+}
+
+ul.nav-list li {
+  margin-right: 40px;
+}
+
+ul.nav-list li a {
+  text-decoration: none; /* Retire le soulignement des liens */
+  color: inherit; /* Utilise la couleur parente, ou remplacez par une couleur spécifique */
+}
+
+select.language-select {
+  padding: 5px; /* Ajustement du padding */
+}
