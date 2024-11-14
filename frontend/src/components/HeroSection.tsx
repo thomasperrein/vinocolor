@@ -1,26 +1,44 @@
-import React from "react";
-import img from "../assets/img/hero-img.jpg";
+import { useNavigate } from "react-router-dom";
 import "./HeroSection.css";
 
-const HeroSection: React.FC = () => {
+interface HeroSectionProps {
+  suptitle?: string;
+  title: string;
+  subtitle?: string;
+  srcImage: string;
+  buttonText?: string;
+  redirectLink?: string;
+}
+
+export default function HeroSection({
+  suptitle,
+  title,
+  subtitle,
+  srcImage,
+  buttonText,
+  redirectLink,
+}: HeroSectionProps) {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    if (!redirectLink) return;
+    navigate(redirectLink);
+  };
   return (
     <section className="hero-section">
       <div className="hero-content">
-        <p className="hero-subtitle">The natural touch for aging excellence</p>
-        <h1 className="hero-title">
-          Vinocolor,
-          <br />
-          the art of colouring wine,
-          <br />
-          naturally
-        </h1>
-        <button className="hero-button">See our products</button>
+        {suptitle && <p className="hero-subtitle">{suptitle}</p>}
+
+        <h1 className="hero-title">{title}</h1>
+        {subtitle && <p className="hero-subtitle">{subtitle}</p>}
+        {buttonText && redirectLink && (
+          <button className="hero-button" onClick={handleButtonClick}>
+            {buttonText}
+          </button>
+        )}
       </div>
       <div className="hero-image">
-        <img src={img} alt="Wine barrels being handled" />
+        <img src={srcImage} alt="Wine barrels being handled" />
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}

@@ -1,38 +1,31 @@
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { useProducts } from "medusa-react";
-import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
-import { useTranslation } from "react-i18next";
-import { getFormattedPrice } from "../utils/getFormattedPrice";
-import { useNavigate } from "react-router-dom";
 import HeroSection from "./HeroSection";
 import Socials from "./Socials";
 import UserGuide from "./UserGuide";
 import WhyVino from "./WhyVino";
 import InternationalDistributor from "./InternationalDistributor";
 import OurClients from "./OurClients";
+import img from "../assets/img/hero-img.jpg";
 
 export default function Landing() {
-  const { products, isLoading } = useProducts();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-
-  const handleProductClick = (productId?: string) => {
-    navigate(`/${productId}`);
-  };
-
-  return isLoading ? (
-    <div>{t("landing.loading")}</div>
-  ) : (
-    <>
-      <main>
-        <HeroSection />
-        <Socials />
-        <UserGuide />
-        <WhyVino />
-        <InternationalDistributor />
-        <OurClients />
-        {/* <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+  return (
+    <main>
+      <HeroSection
+        suptitle="The natural touch for aging excellence"
+        title="Vinocolor,
+          <br />
+          the art of colouring wine,
+          <br />
+          naturally"
+        srcImage={img}
+        buttonText="See our products"
+        redirectLink="/products"
+      />
+      <Socials />
+      <UserGuide />
+      <WhyVino />
+      <InternationalDistributor />
+      <OurClients />
+      {/* <Row xs={1} sm={2} md={3} lg={4} className="g-4">
           {products?.map((product: PricedProduct) => {
             if (product.variants.length > 0 && product.variants[0].prices) {
               console.log(product);
@@ -53,7 +46,6 @@ export default function Landing() {
             }
           })}
         </Row> */}
-      </main>
-    </>
+    </main>
   );
 }

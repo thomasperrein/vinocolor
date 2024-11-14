@@ -1,0 +1,23 @@
+.products {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.product-section{
+    margin-right: 92px;
+    margin-left: 92px;
+    margin-bottom: 50px;
+}
+
+.product-section h1 {
+    font-family: Zodiak;
+    font-size: 56px;
+    font-weight: 540;
+    line-height: 75.04px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
