@@ -1,0 +1,21 @@
+.why-vino{
+    width: 100%;
+    height: 389px;
+    gap: 0px;
+    opacity: 0px;
+    background: #FAFAFA;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.title{
+    font-family: Zodiak;
+    font-size: 56px;
+    font-weight: 540;
+    line-height: 75.04px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}

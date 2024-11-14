@@ -1,0 +1,28 @@
+.why-vino-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    justify-content: space-around;
+    height: 389px;
+    max-width : 25vw;
+    border-radius: 25px;
+    background: var(--primary-color);
+    box-shadow: 0px 0px 15px 0px var(--primary-color);
+    padding: 20px;
+}
+
+.why-vino-item img {
+    width: 161px;
+    height: 173px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.why-vino-item p {
+    margin-top: 0 auto; 
+    text-align: center;
+    padding: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    color: #fff;
+}
