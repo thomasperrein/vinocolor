@@ -9,6 +9,7 @@ import HeroSection from "./HeroSection";
 import Socials from "./Socials";
 import UserGuide from "./UserGuide";
 import WhyVino from "./WhyVino";
+import InternationalDistributor from "./InternationalDistributor";
 
 export default function Landing() {
   const { products, isLoading } = useProducts();
@@ -28,6 +29,7 @@ export default function Landing() {
         <Socials />
         <UserGuide />
         <WhyVino />
+        <InternationalDistributor />
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
           {products?.map((product: PricedProduct) => {
             if (product.variants.length > 0 && product.variants[0].prices) {

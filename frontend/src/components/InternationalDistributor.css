@@ -1,0 +1,17 @@
+.title{
+    font-family: Zodiak;
+    font-size: 56px;
+    font-weight: 540;
+    line-height: 75.04px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.international-distributor{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
