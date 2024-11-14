@@ -1,0 +1,56 @@
+.social-rectangle{
+    width: 327px;
+    height: 66px;
+    top: 986px;
+    left: 286px;
+    gap: 0px;
+    border-radius: 50px 50px 50px 50px;
+    opacity: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 5px 15px 0px #0000004D;
+
+}
+
+.social-rectangle img {
+    width: 48px;
+    height: 48px;
+    top: 995px;
+    left: 306px;
+    gap: 0px;
+    opacity: 0px;
+    margin-top: 9px;
+    margin-bottom: 9px;
+    margin-left: 20px;
+}
+
+.social-rectangle-text{
+    width: Fixed (178px)px;
+    height: Fixed (56px)px;
+    top: 991px;
+    left: 383px;
+    gap: 10px;
+    opacity: 0px;
+    margin-right: 75px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.social-rectangle-text p {
+    width: Fixed (178px)px;
+    height: Fixed (56px)px;
+    top: 991px;
+    left: 383px;
+    gap: 10px;
+    opacity: 0px;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 35.5px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    margin-bottom: 0px;
+    font-family: Recia;
+    text-align: center;
+}

@@ -1,9 +1,4 @@
 :root {
-  font-family: "Recia";
-  font-size: 20px;
-  line-height: 26.8px;
-  font-weight: 540;
-  --text-color: #591F19;
   --primary-color: #591F19;
   --secondary-color:#591F19;
   font-synthesis: none;
@@ -14,12 +9,19 @@
 }
 
 a {
-  font-weight: 500;
+  text-decoration: none;
+  color: inherit;
 }
+
 a:hover {
   cursor: pointer;
 }
 
 body {
+  font-family: Recia, Zodiak;
+  font-size: 20px;
+  line-height: 26.8px;
+  font-weight: 540;
+  color: #591F19;
   min-height: 100vh;
 }

@@ -22,10 +22,14 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/">{t("layout.home")}</Link>
+            <Link to="/">
+              <b>{t("layout.home")}</b>
+            </Link>
           </li>
           <li>
-            <Link to="/products">{t("layout.products")}</Link>
+            <Link to="/products">
+              <b>{t("layout.products")}</b>
+            </Link>
           </li>
           <li>
             <select
@@ -40,12 +44,16 @@ export default function Navbar() {
         </ul>
         <ul className="nav-list nav-right">
           <li>
-            <Link to="/about">{t("layout.about")}</Link>
+            <Link to="/about">
+              <b>{t("layout.about")}</b>
+            </Link>
           </li>
           <li>
-            <Link to="/contact">{t("layout.contact")}</Link>
+            <Link to="/contact">
+              <b>{t("layout.contact")}</b>
+            </Link>
           </li>
-          <li>
+          <li style={{ marginRight: "0px" }}>
             <Link to="/my-cart">
               <img src={cart} alt="cart" />
             </Link>
