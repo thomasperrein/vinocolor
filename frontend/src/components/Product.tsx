@@ -1,11 +1,8 @@
 import { useParams } from "react-router-dom";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import { useCart, useCreateLineItem, useProduct } from "medusa-react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import { useTranslation } from "react-i18next";
+import "./Product.css";
 
 export default function Product() {
   const { id } = useParams();
@@ -60,27 +57,29 @@ export default function Product() {
   };
 
   return (
-    <div>
-      {isLoading && <span>{t("product.loading")}</span>}
-      {product && (
-        <Container>
-          <Row>
-            <Col>
+    <>
+      <div className="separator-product"></div>
+      <div className="product-section">
+        {isLoading && <span>{t("product.loading")}</span>}
+        {product && (
+          <>
+            <div className="product-section-img">
               <img
-                width="500px"
                 alt={product.title}
                 src={product.thumbnail ? product.thumbnail : ""}
               />
-            </Col>
-            <Col className="d-flex justify-content-center flex-column">
+            </div>
+            <div className="product-section-content">
               <h1>{product.title}</h1>
-              <p className="mb-4 text-success fw-bold">
+              <p>
+                Composition : 80% red wine, 20% grape extract Packaging : 100 g
+                Use : dilute 100 g of product in 1 litre of water to colour
+                around 30 to 50 barrels. Store in a cool, dry place.
+              </p>
+              <p>
                 {getFormattedPrice(product.variants?.[0]?.prices?.[0]?.amount)}
               </p>
-              <p className="mb-5">{product.description}</p>
-              <Button
-                variant="success"
-                size="lg"
+              <button
                 onClick={() => {
                   if (product.variants[0].id) {
                     console.log("cart", cartId);
@@ -94,11 +93,11 @@ export default function Product() {
                 }}
               >
                 {t("product.add_to_cart")}
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      )}
-    </div>
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }
