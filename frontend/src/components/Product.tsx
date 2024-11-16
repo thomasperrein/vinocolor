@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCart, useCreateLineItem, useProduct } from "medusa-react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
@@ -9,6 +10,9 @@ export default function Product() {
   const { product, isLoading } = useProduct(id!);
   const { t } = useTranslation();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState("");
+
   const cartId = localStorage.getItem("cart_id") || "error";
 
   const { createCart } = useCart();
@@ -18,9 +22,7 @@ export default function Product() {
       {},
       {
         onSuccess: ({ cart }) => {
-          console.log("creation cart");
           localStorage.setItem("cart_id", cart.id);
-          console.log("affectation cust");
           fetch(`http://localhost:9000/store/carts/${cart.id}`, {
             method: "POST",
             credentials: "include",
@@ -34,7 +36,6 @@ export default function Product() {
           })
             .then((res) => res.json())
             .then((res) => console.log(res));
-          console.log("no error");
         },
       }
     );
@@ -50,10 +51,19 @@ export default function Product() {
       },
       {
         onSuccess: ({ cart }) => {
-          console.log("la", cart.items);
+          console.log("Cart items:", cart.items);
         },
       }
     );
+  };
+
+  const openModal = (imageUrl: string) => {
+    setModalImage(imageUrl);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -67,6 +77,8 @@ export default function Product() {
               <img
                 alt={product.title}
                 src={product.thumbnail ? product.thumbnail : ""}
+                onClick={() => openModal(product.thumbnail || "")}
+                style={{ cursor: "pointer" }}
               />
             </div>
             <div className="product-section-content">
@@ -82,8 +94,7 @@ export default function Product() {
               <button
                 onClick={() => {
                   if (product.variants[0].id) {
-                    console.log("cart", cartId);
-                    if (cartId == "error") {
+                    if (cartId === "error") {
                       handleCreateCart();
                       handleAddItem(product.variants[0].id, 1);
                     } else {
@@ -98,6 +109,23 @@ export default function Product() {
           </>
         )}
       </div>
+
+      {/* Modale */}
+      {isModalOpen && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={closeModal}>
+              &times;
+            </button>
+            <img
+              src={modalImage}
+              alt="Modal"
+              className="modal-image"
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
