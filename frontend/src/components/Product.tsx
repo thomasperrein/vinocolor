@@ -69,11 +69,11 @@ export default function Product() {
   return (
     <>
       <div className="separator-product"></div>
-      <div className="product-section">
+      <div className="product-section-page">
         {isLoading && <span>{t("product.loading")}</span>}
         {product && (
           <>
-            <div className="product-section-img">
+            <div className="product-section-page-img">
               <img
                 alt={product.title}
                 src={product.thumbnail ? product.thumbnail : ""}
@@ -81,7 +81,7 @@ export default function Product() {
                 style={{ cursor: "pointer" }}
               />
             </div>
-            <div className="product-section-content">
+            <div className="product-section-page-content">
               <h1>{product.title}</h1>
               <p>
                 Composition : 80% red wine, 20% grape extract Packaging : 100 g

@@ -11,7 +11,7 @@ export default function Products() {
   const navigate = useNavigate();
   const handleProductClick = (productId?: string) => {
     if (!productId) return;
-    navigate(`/${productId}`);
+    navigate(`/products/${productId}`);
   };
   return (
     <main>
