@@ -1,0 +1,77 @@
+.about-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* Permet de gérer les écrans plus petits */
+}
+
+.about-item__content {
+  max-width: 60%;
+  padding: 1rem; /* Ajout pour éviter que le contenu colle trop sur petits écrans */
+}
+
+.about-item__content h2 {
+  font-family: Zodiak !important;
+  font-size: clamp(24px, 5vw, 50px) !important; /* Clamp pour la responsivité */
+  font-weight: 540 !important;
+  line-height: 1.4 !important;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 2rem !important;
+}
+
+.about-item__content h3 {
+  font-family: Recia !important;
+  font-size: clamp(16px, 3vw, 25px) !important;
+  font-weight: 700 !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #591F1999 !important;
+  margin-bottom: 1.5rem;
+}
+
+.about-item__content p {
+  font-family: Recia !important;
+  font-size: clamp(14px, 2.5vw, 25px) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.about-item__image {
+  max-width: 40%;
+  flex: 1 1 auto; /* Permet à l'image de prendre un espace flexible */
+  padding: 0 3rem
+}
+
+.about-item__image img {
+  max-width: 100%; /* S'assure que l'image ne dépasse jamais son conteneur */
+  height: auto; /* Maintient les proportions */
+  object-fit: cover; /* Si une coupe est nécessaire */
+}
+
+@media (max-width: 768px) {
+  .about-item {
+    flex-direction: column; /* Empile les éléments en colonne sur petits écrans */
+  }
+
+  .about-item__content,
+  .about-item__image {
+    max-width: 90%; /* Réduit la largeur des sections sur petits écrans */
+  }
+
+  .about-item__content h2 {
+    font-size: clamp(20px, 6vw, 36px) !important;
+  }
+
+  .about-item__content h3,
+  .about-item__content p {
+    font-size: clamp(14px, 4vw, 20px) !important;
+  }
+}
