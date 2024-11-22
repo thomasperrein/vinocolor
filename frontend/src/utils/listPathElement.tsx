@@ -5,6 +5,7 @@ import PrivacyPolicy from "../components/PrivacyPolicy";
 import Product from "../components/Product";
 import Products from "../components/Products";
 import About from "../components/About";
+import Contact from "../components/Contact";
 
 export const listPathElement = [
   { path: "/", element: <Landing /> },
@@ -14,4 +15,5 @@ export const listPathElement = [
   { path: "/products/:id", element: <Product /> },
   { path: "/my-cart", element: <Cart /> },
   { path: "/checkout", element: <Checkout /> },
+  { path: "/contact", element: <Contact /> },
 ];

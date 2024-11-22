@@ -1,0 +1,40 @@
+.contact {
+    margin: 0 92px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.header h1 {
+    font-family: Zodiak;
+    font-size: 56px;
+    font-weight: 540;
+    line-height: 75.04px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.header p {
+    font-family: Recia;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 35.5px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+}
+
+.box-send-mail {
+    width: 100%;
+    gap: 0px;
+    border-radius: 25px ;
+    opacity: 0px;
+    border: 8px solid #591F19;
+    display: flex;
+    flex-direction: row;
+}
