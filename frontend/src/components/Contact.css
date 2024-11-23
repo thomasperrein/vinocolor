@@ -1,5 +1,7 @@
 .contact {
-    margin: 0 92px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
 }
 
 .header {
@@ -7,34 +9,115 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 50px;
+    text-align: center;
 }
 
 .header h1 {
     font-family: Zodiak;
-    font-size: 56px;
+    font-size: 56px; /* Réduction pour petits écrans */
     font-weight: 540;
-    line-height: 75.04px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+    line-height: 75.05px;
 }
 
 .header p {
     font-family: Recia;
-    font-size: 25px;
+    font-size: 25px; /* Réduction pour petits écrans */
     font-weight: 500;
     line-height: 35.5px;
-    text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
 }
 
 .box-send-mail {
     width: 100%;
-    gap: 0px;
-    border-radius: 25px ;
-    opacity: 0px;
-    border: 8px solid #591F19;
+    border-radius: 25px;
+    border: 8px solid var(--primary-color);
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; /* Permet aux éléments de s'empiler sur petits écrans */
+    align-items: center;
+    gap: 20px;
+}
+
+.box-send-mail img {
+    width: 100%; /* S'adapte à la largeur disponible */
+    max-width: 400px; /* Limite pour écrans larges */
+    object-fit: contain;
+    flex: 1;
+}
+
+.box-send-mail form {
+    width: 100%;
+    padding: 20px;
+    max-width: 600px; /* Limite pour écrans larges */
+    margin: auto;
+    flex: 2;
+}
+
+.box-send-mail form div {
+    margin-bottom: 15px; /* Espacement entre les champs */
+}
+
+input[type="text"], input[type="email"], textarea {
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: 0.2em solid var(--primary-color);
+    background: rgba(var(--primary-color), 0.2);
+    border-radius: 0.2em 0.2em 0 0;
+    padding: 0.4em;
+    color: var(--primary-color);
+    width: 100%;
+}
+
+.box-send-mail form button {
+    width: 100%; /* Bouton large pour petits écrans */
+    max-width: 278px;
+    height: 61px;
+    border-radius: 15px;
+    border: 3px solid var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    font-family: Recia;
+    font-size: 18px; /* Réduction pour petits écrans */
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+    cursor: pointer;
+    margin: auto; /* Centrer sur petits écrans */
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .header p {
+        font-size: 16px;
+    }
+
+    .box-send-mail {
+        flex-direction: column; /* Colonne sur petits écrans */
+    }
+
+    .box-send-mail img {
+        max-width: 300px;
+    }
+
+    .box-send-mail form {
+        padding: 10px;
+    }
+
+    .box-send-mail form button {
+        width: 100%; /* Bouton prend tout l'espace */
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
 }

@@ -78,31 +78,33 @@ export default function Contact() {
       <div className="box-send-mail">
         <img src={contactSvg} alt="contact image" />
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name">Your name</label>
-            <input type="text" id="name" name="name" ref={nameRef} required />
+          <div className="form-name-email-subject">
+            <div>
+              <label htmlFor="name">Your name</label>
+              <input type="text" id="name" name="name" ref={nameRef} required />
+            </div>
+            <div>
+              <label htmlFor="email">Your email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                ref={emailRef}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="subject">Your subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                ref={subjectRef}
+                required
+              />
+            </div>
           </div>
-          <div>
-            <label htmlFor="email">Your email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              ref={emailRef}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="subject">Your subject</label>
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              ref={subjectRef}
-              required
-            />
-          </div>
-          <div>
+          <div className="message">
             <label htmlFor="message">Message</label>
             <textarea
               id="message"
