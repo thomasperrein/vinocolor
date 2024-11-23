@@ -37,10 +37,7 @@ export default function CartRecap() {
   return (
     <div
       style={{
-        position: "fixed", // La box reste fixe même en scrollant
-        top: "20px", // Distance par rapport au haut de l'écran
-        right: "20px", // Distance par rapport au côté droit
-        width: "300px", // Largeur de la box
+        width: "50%", // Largeur de la box
         padding: "20px", // Un peu d'espace intérieur
         backgroundColor: "#f9f9f9", // Couleur de fond
         border: "1px solid #ccc", // Bordure grise claire

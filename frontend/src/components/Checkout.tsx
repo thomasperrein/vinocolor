@@ -3,6 +3,7 @@ import CartRecap from "./CartRecap";
 import ShippingAddress from "./ShippingAddress";
 import ShippingOptions from "./ShippingOptions";
 import PaymentProviders from "./PaymentProvidersOptions";
+import "./Checkout.css";
 
 export default function Checkout() {
   const cartId = localStorage.getItem("cart_id") || "error";
@@ -24,7 +25,7 @@ export default function Checkout() {
   };
 
   return (
-    <div>
+    <div className="checkout">
       {!isAddressUpdated && !isShippingOptionsUpdated && !isPaymentSuccess && (
         <ShippingAddress
           onAddressUpdateSuccess={handleAddressUpdateSuccess}
