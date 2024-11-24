@@ -79,3 +79,21 @@
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
 }
+
+/* Champs obligatoires non remplis */
+.shipping-address div input:required:invalid,
+select:required:invalid {
+  border: 2px solid red;
+}
+
+/* Indique qu'un champ obligatoire est en cours de remplissage */
+.shipping-address div input:required:valid,
+select:required:valid {
+  border: 2px solid green;
+}
+
+/* Pour les labels des champs invalides */
+.shipping-address div input:required:invalid + label,
+select:required:invalid + label {
+  color: red;
+}
