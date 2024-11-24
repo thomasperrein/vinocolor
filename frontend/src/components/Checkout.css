@@ -5,3 +5,8 @@
     padding: 20px;
     border-bottom: 1px solid lightgray;
 }
+
+.sidebar {
+  flex: 1; /* Largeur ajustée pour le récap */
+  position: relative; /* Important pour le comportement sticky */
+}

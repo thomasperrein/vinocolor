@@ -1,0 +1,53 @@
+.cart-recap {
+  position: sticky; /* Fixe le bloc dans la fenêtre lorsque vous scrollez */
+  top: 20px; /* Distance par rapport au haut de la page */
+  width: 300px; /* Largeur fixe pour une apparence soignée */
+  padding: 20px; /* Espacement interne */
+  background-color: #f9f9f9; /* Couleur de fond */
+  border: 1px solid #ccc; /* Bordure grise */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour un effet 3D */
+  font-family: Arial, sans-serif; /* Police de caractères */
+}
+
+.cart-recap h2 {
+  font-size: 24px; /* Taille du titre */
+  font-weight: bold; /* Titre en gras */
+  margin-bottom: 20px; /* Espacement sous le titre */
+  font-family: Recia, sans-serif;
+}
+
+.cart-recap ul {
+  list-style: none; /* Supprime les puces */
+  padding: 0; /* Supprime les marges internes */
+  margin: 0; /* Supprime les marges externes */
+}
+
+.cart-recap li {
+  margin-bottom: 15px; /* Espacement entre les articles */
+  border-bottom: 1px solid #e0e0e0; /* Ligne de séparation */
+  padding-bottom: 10px; /* Espacement interne sous chaque article */
+}
+
+.cart-recap p {
+  margin: 5px 0; /* Espacement entre les paragraphes */
+  font-size: 14px; /* Taille de texte */
+}
+
+.cart-recap strong {
+  font-weight: bold; /* Texte en gras pour les totaux */
+}
+
+.cart-recap .total {
+  margin-top: 20px; /* Espacement au-dessus des totaux */
+  font-size: 16px; /* Taille plus grande pour le total */
+  font-weight: bold; /* Texte en gras */
+}
+
+@media (max-width: 768px) {
+  .cart-recap {
+    position: relative; /* Fixe le bloc pour éviter de couvrir le contenu sur mobile */
+    width: 100%; /* Prend toute la largeur */
+    margin-bottom: 20px; /* Espacement sous le bloc */
+  }
+}

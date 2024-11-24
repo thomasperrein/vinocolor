@@ -47,7 +47,9 @@ export default function Checkout() {
       {isAddressUpdated && isShippingOptionsUpdated && isPaymentSuccess && (
         <span>Payment Ok</span>
       )}
-      <CartRecap />
+      <div className="sidebar">
+        <CartRecap />
+      </div>
     </div>
   );
 }
