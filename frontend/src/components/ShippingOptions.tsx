@@ -4,6 +4,7 @@ import {
   useCartShippingOptions,
 } from "medusa-react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
+import "./ShippingOptions.css";
 
 interface ShippingOptionsProps {
   onShippingOptionsUpdateSuccess: () => void;
@@ -25,12 +26,9 @@ export default function ShippingOptions({
       return;
     }
     addShippingMethod.mutate(
+      { option_id: selectedOption },
       {
-        option_id: selectedOption,
-      },
-      {
-        onSuccess: ({ cart }) => {
-          console.log(cart.shipping_methods);
+        onSuccess: () => {
           onShippingOptionsUpdateSuccess();
         },
       }
@@ -38,10 +36,11 @@ export default function ShippingOptions({
   };
 
   return (
-    <div>
-      {isLoading && <span>Loading...</span>}
+    <div className="shipping-options">
+      <h2>Choisissez votre méthode de livraison</h2>
+      {isLoading && <span>Chargement...</span>}
       {shipping_options && !shipping_options.length && (
-        <span>No shipping options</span>
+        <span>Aucune option de livraison disponible</span>
       )}
       {shipping_options && (
         <form
@@ -51,18 +50,17 @@ export default function ShippingOptions({
           }}
         >
           <ul>
-            {shipping_options.map((shipping_option) => (
-              <li key={shipping_option.id}>
+            {shipping_options.map((option) => (
+              <li key={option.id}>
                 <label>
                   <input
                     type="radio"
                     name="shipping_option"
-                    value={shipping_option.id}
-                    checked={selectedOption === shipping_option.id}
-                    onChange={() => setSelectedOption(shipping_option.id)}
+                    value={option.id}
+                    checked={selectedOption === option.id}
+                    onChange={() => setSelectedOption(option.id)}
                   />
-                  {shipping_option.name}{" "}
-                  {getFormattedPrice(shipping_option.amount!)}
+                  {option.name} - {getFormattedPrice(option.amount!)}
                 </label>
               </li>
             ))}
