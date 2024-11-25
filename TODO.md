@@ -10,18 +10,20 @@ TODO LIST :
   - billing adresse vs shipping adress
   - payment provider
 
-1. front formulaire
+1. contact en filled
+2. true true relou
+3. meilleur loading
+4. meilleur cart recap
+5. générer numéro de commade en metadata
+6. modification de l'invoice address
+7. cart gestion invisibiliser : créer un cart à l'arrivée sur le site si non existant
 
-2. cart gestion invisibiliser : créer un cart à l'arrivée sur le site si non existant
+8. bulle nombre article
 
-3. création client à l'arrivée si pas créé
+9. clé trad
 
-4. bulle nombre article
+10. génération facture
 
-5. clé trad
+11. SEO
 
-6. génération facture
-
-7. SEO
-
-8. deploiement
+12. deploiement

@@ -1,0 +1,52 @@
+.thanks {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  color: #5A2C22; /* Couleur brune */
+  line-height: 1.6;
+}
+
+.thanks h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.thanks img:first-of-type {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.thanks img:last-of-type {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+.thanks p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.thanks p b {
+  color: #5A2C22; /* Mettez l'email en valeur */
+}
+
+.thanks button {
+  background-color: #5A2C22;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.thanks button:hover {
+  background-color: #432317;
+}

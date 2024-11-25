@@ -4,6 +4,7 @@ import ShippingAddress from "./ShippingAddress";
 import ShippingOptions from "./ShippingOptions";
 import PaymentProviders from "./PaymentProvidersOptions";
 import "./Checkout.css";
+import Thanks from "./Thanks";
 
 export default function Checkout() {
   const cartId = localStorage.getItem("cart_id") || "error";
@@ -22,34 +23,40 @@ export default function Checkout() {
 
   const handlePaymentSuccess = () => {
     setIsPaymentSuccess(true);
+    localStorage.setItem("cart_id", "error");
   };
 
   return (
-    <div className="checkout">
-      {!isAddressUpdated && !isShippingOptionsUpdated && !isPaymentSuccess && (
-        <ShippingAddress
-          onAddressUpdateSuccess={handleAddressUpdateSuccess}
-          cartId={cartId}
-        />
-      )}
-      {isAddressUpdated && !isShippingOptionsUpdated && !isPaymentSuccess && (
-        <ShippingOptions
-          onShippingOptionsUpdateSuccess={handleShippingOptionsUpdateSuccess}
-          cartId={cartId}
-        />
-      )}
-      {isAddressUpdated && isShippingOptionsUpdated && !isPaymentSuccess && (
-        <PaymentProviders
-          cartId={cartId}
-          onPaymentSuccess={handlePaymentSuccess}
-        />
-      )}
-      {isAddressUpdated && isShippingOptionsUpdated && isPaymentSuccess && (
-        <span>Payment Ok</span>
-      )}
-      <div className="sidebar">
-        <CartRecap />
+    <>
+      <div className="separator"></div>
+      <div className="checkout">
+        {!isAddressUpdated &&
+          !isShippingOptionsUpdated &&
+          !isPaymentSuccess && (
+            <ShippingAddress
+              onAddressUpdateSuccess={handleAddressUpdateSuccess}
+              cartId={cartId}
+            />
+          )}
+        {isAddressUpdated && !isShippingOptionsUpdated && !isPaymentSuccess && (
+          <ShippingOptions
+            onShippingOptionsUpdateSuccess={handleShippingOptionsUpdateSuccess}
+            cartId={cartId}
+          />
+        )}
+        {isAddressUpdated && isShippingOptionsUpdated && !isPaymentSuccess && (
+          <PaymentProviders
+            cartId={cartId}
+            onPaymentSuccess={handlePaymentSuccess}
+          />
+        )}
+        {isAddressUpdated && isShippingOptionsUpdated && isPaymentSuccess && (
+          <Thanks />
+        )}
+        <div className="sidebar">
+          <CartRecap />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

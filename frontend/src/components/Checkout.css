@@ -10,3 +10,8 @@
   flex: 1; /* Largeur ajustée pour le récap */
   position: relative; /* Important pour le comportement sticky */
 }
+
+.separator{ 
+    width: 100%;
+    border: 2px solid var(--primary-color);
+}

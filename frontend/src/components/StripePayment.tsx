@@ -7,6 +7,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useGetCart } from "medusa-react";
+import "./StripePayment.css";
+import { COUNTRIES_AND_CODE } from "../utils/countries";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_PUBLIC_STRIPE_KEY || "temp"
@@ -23,7 +25,8 @@ export function StripePayment({
   const clientSecret = cart?.payment_sessions?.[0].data.client_secret as string;
 
   return (
-    <div>
+    <div className="stripe-payment-container">
+      <h2>How would you like to pay?</h2>
       <Elements stripe={stripePromise} options={{ clientSecret }}>
         <StripeForm
           clientSecret={clientSecret}
@@ -45,6 +48,11 @@ const StripeForm: React.FC<{
 
   const stripe = useStripe();
   const elements = useElements();
+
+  const countryName =
+    COUNTRIES_AND_CODE.find(
+      (country) => country.code === cart?.shipping_address?.country_code
+    )?.country || "Unknown Country";
 
   async function handlePayment(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -104,24 +112,33 @@ const StripeForm: React.FC<{
 
   return (
     <>
-      <div>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-        <h1>TEST</h1>
-      </div>
+      <h3>Payment in full:</h3>
       <form>
-        <CardElement />
-        <button onClick={handlePayment} disabled={loading}>
-          Place Order
+        <label htmlFor="card-element">Enter your credit card details:</label>
+        <CardElement id="card-element" className="stripe-card-element" />
+        <button
+          className="stripe-payment-button"
+          onClick={handlePayment}
+          disabled={loading}
+        >
+          {loading ? "Processing..." : "Proceed to purchase"}
         </button>
       </form>
+      <div className="invoice-address">
+        <h4>Invoice address</h4>
+        <p>
+          {cart?.shipping_address?.first_name}{" "}
+          {cart?.shipping_address?.last_name}
+        </p>
+        <p>{cart?.shipping_address?.address_1}</p>
+        {cart?.shipping_address?.address_2 && (
+          <p>{cart?.shipping_address?.address_2}</p>
+        )}
+        <p>
+          {cart?.shipping_address?.postal_code} {cart?.shipping_address?.city}
+        </p>
+        <p>{countryName}</p>
+      </div>
     </>
   );
 };
-
-export default StripePayment;
