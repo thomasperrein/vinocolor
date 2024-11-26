@@ -14,14 +14,15 @@ TODO LIST :
 2. meilleur cart recap
 3. générer numéro de commade en metadata
 4. modification de l'invoice address
-5. cart gestion invisibiliser : créer un cart à l'arrivée sur le site si non existant
+5. description des produits à implementer
+6. cart gestion invisibiliser : créer un cart à l'arrivée sur le site si non existant
 
-6. bulle nombre article
+7. bulle nombre article
 
-7. clé trad
+8. clé trad
 
-8. génération facture
+9. génération facture
 
-9. SEO
+10. SEO
 
-10. deploiement
+11. deploiement
