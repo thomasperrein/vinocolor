@@ -70,6 +70,15 @@
     cursor: pointer;
 }
 
+.product-section-page-content button:hover{
+    background: #4b1a15;
+}
+
+.product-section-page-content button:disabled{
+    background: grey;
+    cursor: not-allowed;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;

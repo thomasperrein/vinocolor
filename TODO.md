@@ -11,18 +11,17 @@ TODO LIST :
   - payment provider
 
 1. contact en filled P3
-2. meilleur cart recap
-3. générer numéro de commade en metadata
-4. modification de l'invoice address
-5. description des produits à implementer
-6. cart gestion invisibiliser : créer un cart à l'arrivée sur le site si non existant
+2. générer numéro de commade en metadata
+3. modification de l'invoice address
+4. modification de la quantité (cache + form direct)
+5. payment providers
 
-7. bulle nombre article
+6. bulle nombre article
 
-8. clé trad
+7. clé trad
 
-9. génération facture
+8. génération facture
 
-10. SEO
+9. SEO
 
-11. deploiement
+10. deploiement
