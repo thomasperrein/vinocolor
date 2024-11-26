@@ -5,6 +5,7 @@ import {
 } from "medusa-react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import "./ShippingOptions.css";
+import "./common.css";
 
 interface ShippingOptionsProps {
   onShippingOptionsUpdateSuccess: () => void;
@@ -15,20 +16,25 @@ export default function ShippingOptions({
   onShippingOptionsUpdateSuccess,
   cartId,
 }: ShippingOptionsProps) {
+  console.log("chargement options...");
   const { shipping_options, isLoading } = useCartShippingOptions(cartId);
   const addShippingMethod = useAddShippingMethodToCart(cartId);
   const [selectedOption, setSelectedOption] = useState<string | undefined>(
     undefined
   );
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAddShippingMethod = () => {
+    setIsSubmitting(true);
     if (!selectedOption) {
+      setIsSubmitting(false);
       return;
     }
     addShippingMethod.mutate(
       { option_id: selectedOption },
       {
         onSuccess: () => {
+          setIsSubmitting(false);
           onShippingOptionsUpdateSuccess();
         },
       }
@@ -37,8 +43,13 @@ export default function ShippingOptions({
 
   return (
     <div className="shipping-options">
+      {isSubmitting ||
+        (isLoading && (
+          <div className="loader-overlay">
+            <div className="loader"></div>
+          </div>
+        ))}
       <h2>Choisissez votre méthode de livraison</h2>
-      {isLoading && <span>Chargement...</span>}
       {shipping_options && !shipping_options.length && (
         <span>Aucune option de livraison disponible</span>
       )}
@@ -65,7 +76,7 @@ export default function ShippingOptions({
               </li>
             ))}
           </ul>
-          <button type="submit" disabled={!selectedOption}>
+          <button type="submit" disabled={!selectedOption || isSubmitting}>
             Confirmer l'option de livraison
           </button>
         </form>

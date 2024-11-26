@@ -8,19 +8,15 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { useGetCart } from "medusa-react";
 import "./StripePayment.css";
+import "./common.css";
 import { COUNTRIES_AND_CODE } from "../utils/countries";
+import { useNavigate } from "react-router-dom";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_PUBLIC_STRIPE_KEY || "temp"
 );
 
-export function StripePayment({
-  cartId,
-  onPaymentSuccess,
-}: {
-  cartId: string;
-  onPaymentSuccess: () => void;
-}) {
+export function StripePayment({ cartId }: { cartId: string }) {
   const { cart } = useGetCart(cartId);
   const clientSecret = cart?.payment_sessions?.[0].data.client_secret as string;
 
@@ -28,11 +24,7 @@ export function StripePayment({
     <div className="stripe-payment-container">
       <h2>How would you like to pay?</h2>
       <Elements stripe={stripePromise} options={{ clientSecret }}>
-        <StripeForm
-          clientSecret={clientSecret}
-          cartId={cartId}
-          onPaymentSuccess={onPaymentSuccess}
-        />
+        <StripeForm clientSecret={clientSecret} cartId={cartId} />
       </Elements>
     </div>
   );
@@ -41,8 +33,8 @@ export function StripePayment({
 const StripeForm: React.FC<{
   clientSecret?: string;
   cartId: string;
-  onPaymentSuccess: () => void;
-}> = ({ clientSecret, cartId, onPaymentSuccess }) => {
+}> = ({ clientSecret, cartId }) => {
+  const navigate = useNavigate();
   const { cart } = useGetCart(cartId);
   const [loading, setLoading] = useState(false);
 
@@ -98,12 +90,13 @@ const StripeForm: React.FC<{
           body: JSON.stringify({}),
         })
           .then((res) => res.json())
-          .then(({ type, cart, order, error }) => {
+          .then(({ type, cart, error }) => {
             if (type === "cart" && cart) {
               console.error(error);
-            } else if (type === "order" && order) {
+            } else if (type === "order") {
               alert("Order placed.");
-              onPaymentSuccess();
+              localStorage.removeItem("cart_id");
+              navigate(`/success-order`);
             }
           });
       })
@@ -112,7 +105,18 @@ const StripeForm: React.FC<{
 
   return (
     <>
+      {loading && (
+        <div className="loader-overlay">
+          <div className="loader"></div>
+        </div>
+      )}
       <h3>Payment in full:</h3>
+      <div className="payment-choice">
+        <label>
+          <input type="radio" name="option" value="creditCard" />
+          Credit Card
+        </label>
+      </div>
       <form>
         <label htmlFor="card-element">Enter your credit card details:</label>
         <CardElement id="card-element" className="stripe-card-element" />
@@ -126,6 +130,7 @@ const StripeForm: React.FC<{
       </form>
       <div className="invoice-address">
         <h4>Invoice address</h4>
+        <p>{cart?.shipping_address?.company}</p>
         <p>
           {cart?.shipping_address?.first_name}{" "}
           {cart?.shipping_address?.last_name}

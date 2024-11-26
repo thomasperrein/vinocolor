@@ -1,49 +1,51 @@
 import { useGetCart } from "medusa-react";
 import { useCallback, useEffect, useState } from "react";
 import { StripePayment } from "./StripePayment";
+import "./common.css";
+import { useParams } from "react-router-dom";
 
-interface PaymentProvidersOptionsProps {
-  cartId: string;
-  onPaymentSuccess: () => void;
-}
-
-export default function PaymentProvidersOptions({
-  cartId,
-  onPaymentSuccess,
-}: PaymentProvidersOptionsProps) {
-  const { cart } = useGetCart(cartId);
+export default function PaymentProvidersOptions() {
+  const cartId = useParams().id;
+  const { cart } = useGetCart(cartId!);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (!cart) {
+  const initializePaymentSession = async () => {
+    if (!cartId) {
       return;
     }
-    const initializePaymentSession = async () => {
-      try {
-        setLoading(true);
-        await fetch(
-          `http://localhost:9000/store/carts/${cartId}/payment-sessions`,
-          {
-            credentials: "include",
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-publishable-api-key": import.meta.env
-                .NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
-            },
-            body: JSON.stringify({
-              provider_id: "stripe",
-            }),
-          }
-        );
-      } catch (error) {
-        console.error("Error initializing payment session:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
-    initializePaymentSession();
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `http://localhost:9000/store/carts/${cartId}/payment-sessions`,
+        {
+          credentials: "include",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-publishable-api-key": import.meta.env
+              .VITE_REACT_APP_MEDUSA_PUBLISHABLE_API_KEY,
+          },
+          body: JSON.stringify({
+            provider_id: "stripe",
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to initialize payment session");
+      }
+    } catch (error) {
+      console.error("Error initializing payment session:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (cartId) {
+      initializePaymentSession();
+    }
   }, [cartId]);
 
   const getPaymentUi = useCallback(() => {
@@ -53,14 +55,17 @@ export default function PaymentProvidersOptions({
     }
 
     if (activePaymentSession.provider_id === "stripe") {
-      return (
-        <StripePayment cartId={cartId} onPaymentSuccess={onPaymentSuccess} />
-      );
+      return <StripePayment cartId={cartId!} />;
     }
-  }, [cartId]);
+  }, [cart, cartId]);
 
   return (
     <div style={{ width: "60%" }}>
+      {loading && (
+        <div className="loader-overlay">
+          <div className="loader"></div>
+        </div>
+      )}
       {loading ? (
         <p>Chargement du fournisseur de paiement...</p>
       ) : (

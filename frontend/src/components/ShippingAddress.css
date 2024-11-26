@@ -97,3 +97,8 @@ select:required:valid {
 select:required:invalid + label {
   color: red;
 }
+
+.shipping-address button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
