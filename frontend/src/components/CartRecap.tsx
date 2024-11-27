@@ -1,11 +1,10 @@
-import { useGetCart } from "medusa-react";
 import { useEffect, useState } from "react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import "./CartRecap.css";
+import { useCartHomeMade } from "../CartContext";
 
 export default function CartRecap() {
-  const cartId = localStorage.getItem("cart_id") || "error";
-  const { cart, isLoading, error } = useGetCart(cartId);
+  const { cart, cartId, isLoading, error } = useCartHomeMade();
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {

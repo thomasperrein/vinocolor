@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
 import "./Product.css";
 import "react-toastify/dist/ReactToastify.css";
+import { useCartHomeMade } from "../CartContext";
 
 export default function Product() {
   const { id } = useParams();
@@ -16,8 +17,8 @@ export default function Product() {
   const [modalImage, setModalImage] = useState("");
   const [isAdding, setIsAdding] = useState(false);
 
-  const cartId = localStorage.getItem("cart_id") || "error";
   const { createCart } = useCart();
+  const { refetch, cartId } = useCartHomeMade();
 
   const createLineItem = useCreateLineItem(cartId);
 
@@ -64,6 +65,7 @@ export default function Product() {
         onSuccess: ({ cart }) => {
           console.log("Cart items:", cart.items);
           setIsAdding(false);
+          refetch();
           toast.success(t("product.item_added_success"));
         },
         onError: () => {

@@ -6,6 +6,7 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 import Layout from "./components/Layout";
 import { listPathElement } from "./utils/listPathElement";
+import { CartProviderHomeMade } from "./CartContext";
 
 i18next
   .use(initReactI18next)
@@ -29,16 +30,18 @@ const App = () => {
       }
     >
       <CartProvider>
-        <BrowserRouter>
-          <Layout>
-            <Routes>
-              {listPathElement.map(({ path, element }) => (
-                <Route key={path} path={path} element={element} />
-              ))}
-              ;
-            </Routes>
-          </Layout>
-        </BrowserRouter>
+        <CartProviderHomeMade>
+          <BrowserRouter>
+            <Layout>
+              <Routes>
+                {listPathElement.map(({ path, element }) => (
+                  <Route key={path} path={path} element={element} />
+                ))}
+                ;
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </CartProviderHomeMade>
       </CartProvider>
     </MedusaProvider>
   );

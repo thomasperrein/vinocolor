@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CartRecap from "./CartRecap";
 import ShippingAddress from "./ShippingAddress";
 import ShippingOptions from "./ShippingOptions";
 import "./Checkout.css";
 import { useNavigate } from "react-router-dom";
+import { useCartHomeMade } from "../CartContext";
 
 export default function Checkout() {
   console.log("chargement checkout...");
   const navigate = useNavigate();
-  const [cartId, setCartId] = useState<string | null>(null);
+  const { cartId } = useCartHomeMade();
   const [isAddressUpdated, setIsAddressUpdated] = useState(false);
   const [isShippingOptionsUpdated, setIsShippingOptionsUpdated] =
     useState(false);
-
-  useEffect(() => {
-    const storedCartId = localStorage.getItem("cart_id") || "error";
-    if (storedCartId !== cartId) {
-      setCartId(storedCartId);
-    }
-    setCartId(storedCartId);
-  }, [cartId]);
 
   const handleAddressUpdateSuccess = () => {
     setIsAddressUpdated(true); // Met à jour l'état lorsque l'adresse est mise à jour avec succès

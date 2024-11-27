@@ -24,11 +24,7 @@ export default function ProductItem({
       )}
 
       <h2>{product.title}</h2>
-      <div className="details">
-        Composition : 80% red wine, 20% grape extract Packaging : 100 g Use :
-        dilute 100 g of product in 1 litre of water to colour around 30 to 50
-        barrels. Store in a cool, dry place.
-      </div>
+      <div className="details">{product.description}</div>
       <button>Select</button>
     </div>
   );
