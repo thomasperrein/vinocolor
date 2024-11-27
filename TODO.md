@@ -27,3 +27,5 @@ TODO LIST :
 9. rendre le bouton livraison full remplissable
 
 10. rendre la div cliquable du produit
+
+11. Loading jusqu'au paiement pour le checkout

@@ -11,6 +11,10 @@
     padding: 20px;
 }
 
+.product-item:hover{
+    cursor: pointer;
+}
+
 .product-item img {
     margin-top: 59px;
     width :244px;
