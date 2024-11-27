@@ -13,19 +13,17 @@ TODO LIST :
 1. contact en filled P3
 2. générer numéro de commade en metadata
 3. modification de l'invoice address
-4. modification de la quantité (cache + form direct)
-5. payment providers
 
-6. bulle nombre article
+4. payment providers
 
-7. clé trad
+5. clé trad
 
-8. génération facture
+6. génération facture
 
-9. SEO
+7. SEO
 
-10. deploiement
+8. deploiement
 
-11. rendre le bouton livraison full remplissable
+9. rendre le bouton livraison full remplissable
 
-12. rendre la div cliquable du produit
+10. rendre la div cliquable du produit
