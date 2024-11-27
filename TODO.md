@@ -25,3 +25,7 @@ TODO LIST :
 9. SEO
 
 10. deploiement
+
+11. rendre le bouton livraison full remplissable
+
+12. rendre la div cliquable du produit

@@ -5,13 +5,15 @@ import "./Cart.css";
 
 const Cart = () => {
   const cartId = localStorage.getItem("cart_id") || "error";
-  const { cart, isLoading, error, refetch } = useGetCart(cartId);
+  const { cart, error, refetch } = useGetCart(cartId);
   const { mutate: updateItem } = useUpdateLineItem(cartId);
   const { mutate: deleteItem } = useDeleteLineItem(cartId);
   const { t } = useTranslation();
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [isRefetching, setIsRefetching] = useState(false);
+  const [quantities, setQuantities] = useState<Record<string, number>>({});
+  const [loadingItems, setLoadingItems] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (cart?.items) {
@@ -20,17 +22,53 @@ const Cart = () => {
         0
       );
       setTotalPrice(cartTotal);
+
+      const initialQuantities = cart.items.reduce(
+        (acc, item) => ({ ...acc, [item.id]: item.quantity }),
+        {}
+      );
+      setQuantities(initialQuantities);
     }
   }, [cart?.items]);
 
   const handleUpdateQuantity = (lineItemId: string, quantity: number) => {
-    setIsRefetching(true);
+    setLoadingItems((prev) => ({ ...prev, [lineItemId]: true }));
     updateItem(
       { lineId: lineItemId, quantity },
       {
-        onSuccess: () => refetch().finally(() => setIsRefetching(false)),
+        onSuccess: () => {
+          refetch().finally(() => {
+            setLoadingItems((prev) => ({ ...prev, [lineItemId]: false }));
+          });
+        },
       }
     );
+  };
+
+  const handleQuantityChange = (lineItemId: string, value: string) => {
+    if (value === "") {
+      setQuantities((prev) => ({
+        ...prev,
+        [lineItemId]: 0,
+      }));
+      return;
+    }
+
+    if (/^\d+$/.test(value)) {
+      const numericValue = parseInt(value, 10);
+      setQuantities((prev) => ({
+        ...prev,
+        [lineItemId]: numericValue,
+      }));
+    }
+  };
+
+  const handleQuantityBlur = (lineItemId: string) => {
+    const newQuantity = quantities[lineItemId];
+    const currentItem = cart?.items?.find((item) => item.id === lineItemId);
+    if (currentItem && newQuantity !== currentItem.quantity) {
+      handleUpdateQuantity(lineItemId, newQuantity);
+    }
   };
 
   const handleDeleteItem = (lineItemId: string) => {
@@ -38,19 +76,16 @@ const Cart = () => {
     deleteItem(
       { lineId: lineItemId },
       {
-        onSuccess: () => refetch().finally(() => setIsRefetching(false)),
-        onError: () => localStorage.removeItem("cart_id"),
+        onSuccess: () => {
+          refetch().finally(() => setIsRefetching(false));
+        },
+        onError: () => {
+          setIsRefetching(false);
+          localStorage.removeItem("cart_id");
+        },
       }
     );
   };
-
-  if (cartId === "error") {
-    return <div className="cart-error">{t("cart.error")}</div>;
-  }
-
-  if (isLoading || isRefetching) {
-    return <div className="cart-loading">{t("cart.loading")}</div>;
-  }
 
   if (error) {
     return <div className="cart-error">{t("cart.fetch_error")}</div>;
@@ -76,22 +111,42 @@ const Cart = () => {
                       onClick={() =>
                         handleUpdateQuantity(item.id, item.quantity - 1)
                       }
-                      disabled={item.quantity === 1}
+                      disabled={
+                        item.quantity === 1 ||
+                        item.quantity === 0 ||
+                        loadingItems[item.id]
+                      }
                     >
                       -
                     </button>
-                    <span className="cart-item-quantity">{item.quantity}</span>
+                    <input
+                      type="text"
+                      className={`cart-item-quantity-input ${
+                        loadingItems[item.id] ? "loading" : ""
+                      }`}
+                      value={quantities[item.id]}
+                      onChange={(e) =>
+                        handleQuantityChange(item.id, e.target.value)
+                      }
+                      onBlur={() => handleQuantityBlur(item.id)}
+                      disabled={loadingItems[item.id]}
+                    />
+                    {loadingItems[item.id] && (
+                      <span className="quantity-loading-spinner"></span>
+                    )}
                     <button
                       className="cart-button"
                       onClick={() =>
                         handleUpdateQuantity(item.id, item.quantity + 1)
                       }
+                      disabled={loadingItems[item.id]}
                     >
                       +
                     </button>
                     <button
                       className="cart-button cart-remove"
                       onClick={() => handleDeleteItem(item.id)}
+                      disabled={loadingItems[item.id]}
                     >
                       {t("cart.remove")}
                     </button>
@@ -106,12 +161,22 @@ const Cart = () => {
               {cart.region.currency_code.toUpperCase()}
             </p>
           </div>
-          <button className="cart-checkout">
+          <button
+            className="cart-checkout"
+            disabled={
+              isRefetching || Object.values(loadingItems).some((v) => v)
+            }
+          >
             <a href="/checkout">{t("cart.checkout")}</a>
           </button>
         </div>
       ) : (
-        <p>{t("cart.empty")}</p>
+        <>
+          {error && <p className="cart-error">{t("cart.error")}</p>}
+          {cartId !== "error" && !error && (
+            <p className="cart-empty">{t("cart.empty")}</p>
+          )}
+        </>
       )}
     </div>
   );
