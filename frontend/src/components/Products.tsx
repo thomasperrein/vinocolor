@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useProducts } from "medusa-react";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "./HeroSection";
@@ -7,24 +8,26 @@ import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
 import "./Products.css";
 
 export default function Products() {
+  const { t } = useTranslation();
   const { products, isLoading } = useProducts();
   const navigate = useNavigate();
+
   const handleProductClick = (productId?: string) => {
     if (!productId) return;
     navigate(`/products/${productId}`);
   };
+
   return (
     <main>
       <HeroSection
-        title="The art of colour in the service of wine !"
-        subtitle="Discover our natural powder, created to give life and prestige to 
-each barrel, while respecting the artisanal character of the wine. "
+        title={t("products.hero_title")}
+        subtitle={t("products.hero_subtitle")}
         srcImage={barrel}
       />
       <section className="product-section">
-        <h1>Our products</h1>
+        <h1>{t("products.section_title")}</h1>
         {isLoading ? (
-          <p>Loading...</p>
+          <p>{t("products.loading")}</p>
         ) : (
           <div className="products">
             {products?.map((product: PricedProduct) => {

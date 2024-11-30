@@ -1,4 +1,4 @@
-import { useUpdateLineItem, useDeleteLineItem } from "medusa-react";
+import { useUpdateLineItem } from "medusa-react";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import "./Cart.css";
@@ -7,11 +7,9 @@ import { useCartHomeMade } from "../CartContext";
 const Cart = () => {
   const { cartIdState, cart, error, refetch } = useCartHomeMade();
   const { mutate: updateItem } = useUpdateLineItem(cartIdState);
-  const { mutate: deleteItem } = useDeleteLineItem(cartIdState);
   const { t } = useTranslation();
 
   const [totalPrice, setTotalPrice] = useState(0);
-  const [isRefetching, setIsRefetching] = useState(false);
   const [quantities, setQuantities] = useState<Record<string, number>>({});
   const [loadingItems, setLoadingItems] = useState<Record<string, boolean>>({});
 
@@ -69,22 +67,6 @@ const Cart = () => {
     if (currentItem && newQuantity !== currentItem.quantity) {
       handleUpdateQuantity(lineItemId, newQuantity);
     }
-  };
-
-  const handleDeleteItem = (lineItemId: string) => {
-    setIsRefetching(true);
-    deleteItem(
-      { lineId: lineItemId },
-      {
-        onSuccess: () => {
-          refetch().finally(() => setIsRefetching(false));
-        },
-        onError: () => {
-          setIsRefetching(false);
-          localStorage.removeItem("cart_id");
-        },
-      }
-    );
   };
 
   if (error) {
@@ -145,7 +127,7 @@ const Cart = () => {
                     </button>
                     <button
                       className="cart-button cart-remove"
-                      onClick={() => handleDeleteItem(item.id)}
+                      onClick={() => handleUpdateQuantity(item.id, 0)}
                       disabled={loadingItems[item.id]}
                     >
                       {t("cart.remove")}
@@ -163,9 +145,7 @@ const Cart = () => {
           </div>
           <button
             className="cart-checkout"
-            disabled={
-              isRefetching || Object.values(loadingItems).some((v) => v)
-            }
+            disabled={Object.values(loadingItems).some((v) => v)}
           >
             <a href="/checkout">{t("cart.checkout")}</a>
           </button>

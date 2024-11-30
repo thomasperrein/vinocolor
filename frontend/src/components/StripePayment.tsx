@@ -5,6 +5,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import { useTranslation } from "react-i18next";
 import { loadStripe } from "@stripe/stripe-js";
 import "./StripePayment.css";
 import "./common.css";
@@ -17,9 +18,11 @@ const stripePromise = loadStripe(
 );
 
 export function StripePayment() {
+  const { t } = useTranslation();
+
   return (
     <div className="stripe-payment-container">
-      <h2>How would you like to pay?</h2>
+      <h2>{t("stripe-payment.title")}</h2>
       <Elements stripe={stripePromise}>
         <StripeForm />
       </Elements>
@@ -28,6 +31,7 @@ export function StripePayment() {
 }
 
 const StripeForm: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { cart, clientSecret, cartIdState, handleCartIdChange } =
     useCartHomeMade();
@@ -84,7 +88,7 @@ const StripeForm: React.FC = () => {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update billing address");
+        throw new Error(t("stripe-payment.save_error"));
       }
     } catch (error) {
       console.error("Error updating billing address:", error);
@@ -161,19 +165,21 @@ const StripeForm: React.FC = () => {
           <div className="loader"></div>
         </div>
       )}
-      <h3>Payment in full:</h3>
+      <h3>{t("stripe-payment.payment_in_full")}</h3>
       <div className="payment-choice">
         <label>
           <input type="radio" name="option" value="creditCard" />
-          Credit Card
+          {t("stripe-payment.credit_card_option")}
         </label>
       </div>
       <form>
-        <label htmlFor="card-element">Enter your credit card details:</label>
+        <label htmlFor="card-element">
+          {t("stripe-payment.card_details_label")}
+        </label>
         <CardElement id="card-element" className="stripe-card-element" />
 
         <div className="invoice-address">
-          <h4>Invoice Address</h4>
+          <h4>{t("stripe-payment.invoice_address")}</h4>
           {!editingBilling ? (
             <div>
               <p>{billingDetails.company}</p>
@@ -197,7 +203,7 @@ const StripeForm: React.FC = () => {
                 className="edit-billing-button"
                 onClick={() => setEditingBilling(true)}
               >
-                Edit
+                {t("stripe-payment.edit_button")}
               </button>
             </div>
           ) : (
@@ -205,49 +211,49 @@ const StripeForm: React.FC = () => {
               <input
                 type="text"
                 name="company"
-                placeholder="Company"
+                placeholder={t("stripe-payment.company_placeholder")}
                 value={billingDetails.company}
                 onChange={handleBillingChange}
               />
               <input
                 type="text"
                 name="firstName"
-                placeholder="First Name"
+                placeholder={t("stripe-payment.first_name_placeholder")}
                 value={billingDetails.firstName}
                 onChange={handleBillingChange}
               />
               <input
                 type="text"
                 name="lastName"
-                placeholder="Last Name"
+                placeholder={t("stripe-payment.last_name_placeholder")}
                 value={billingDetails.lastName}
                 onChange={handleBillingChange}
               />
               <input
                 type="text"
                 name="address1"
-                placeholder="Address Line 1"
+                placeholder={t("stripe-payment.address1_placeholder")}
                 value={billingDetails.address1}
                 onChange={handleBillingChange}
               />
               <input
                 type="text"
                 name="address2"
-                placeholder="Address Line 2"
+                placeholder={t("stripe-payment.address2_placeholder")}
                 value={billingDetails.address2}
                 onChange={handleBillingChange}
               />
               <input
                 type="text"
                 name="city"
-                placeholder="City"
+                placeholder={t("stripe-payment.city_placeholder")}
                 value={billingDetails.city}
                 onChange={handleBillingChange}
               />
               <input
                 type="text"
                 name="postalCode"
-                placeholder="Postal Code"
+                placeholder={t("stripe-payment.postal_code_placeholder")}
                 value={billingDetails.postalCode}
                 onChange={handleBillingChange}
               />
@@ -267,7 +273,7 @@ const StripeForm: React.FC = () => {
                 className="save-billing-button"
                 onClick={saveBillingDetails}
               >
-                Save
+                {t("stripe-payment.save_button")}
               </button>
             </div>
           )}
@@ -278,7 +284,9 @@ const StripeForm: React.FC = () => {
           onClick={handlePayment}
           disabled={loading}
         >
-          {loading ? "Processing..." : "Proceed to purchase"}
+          {loading
+            ? t("stripe-payment.processing")
+            : t("stripe-payment.proceed_to_purchase")}
         </button>
       </form>
     </div>

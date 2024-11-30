@@ -3,8 +3,9 @@
         "name": "Accueil",
         "loading": "Chargement..."
     },
-    "cart":{
+    "cart": {
         "name": "Panier",
+        "title": "Votre panier",
         "empty": "Votre panier est vide",
         "checkout": "Commander",
         "total": "Total",
@@ -12,7 +13,65 @@
         "fetch_error": "Erreur lors de la récupération du panier",
         "error": "Erreur",
         "loading": "Chargement...",
-        "items_in_cart": "Articles dans le panier"
+        "items_in_cart": "Articles dans le panier",
+        "prince": "Prix"
+    },
+    "cart-recap": {
+        "error": "Erreur : aucun panier trouvé.",
+        "loading": "Chargement de votre panier...",
+        "global-error": "Une erreur est survenue lors de la récupération de votre panier. Veuillez réessayer plus tard.",
+        "title": "Récapitulatif du panier",
+        "product-title": "Produit",
+        "product-quantity": "Quantité",
+        "total-price": "Prix",
+        "shipping-price": "Frais de livraison",
+        "total": "Total",
+        "empty": "Votre panier est vide"
+    },
+    "checkout": {
+        "loading": "Chargement..."
+    },
+    "contact": {
+        "title": "Nous contacter",
+        "description": "Vous avez une question, un projet ou souhaitez simplement en savoir plus sur Vinocolor ? Notre équipe se fera un plaisir de vous répondre. Envoyez-nous un message ci-dessous ou adressez toute demande spéciale à l'adresse suivante :",
+        "email": "contact@vinocolor.fr",
+        "name_label": "Votre nom",
+        "email_label": "Votre email",
+        "subject_label": "Votre sujet",
+        "message_label": "Message",
+        "send_button": "Envoyer votre message",
+        "sending_button": "Envoi en cours...",
+        "status_sent": "Votre message a été envoyé avec succès !",
+        "status_error": "Échec de l'envoi du message. Veuillez réessayer.",
+        "status_fill_fields": "Veuillez remplir tous les champs.",
+        "status_config_error": "Erreur de configuration. Veuillez réessayer plus tard."
+    },
+    "distributor-box": {
+        "description": "Vinocolor est fier de proposer ses produits à l'international, avec une distribution dans plusieurs pays :",
+        "countries": {
+            "france": "France",
+            "spain": "Espagne",
+            "italy": "Italie",
+            "germany": "Allemagne",
+            "hungary": "Hongrie",
+            "greece": "Grèce",
+            "canada": "Canada",
+            "united_states": "États-Unis"
+        }
+    },
+    "international-distributor": {
+        "title": "Distributeur international"
+    },
+    "map": {
+        "legend": ": Pays où Vinocolor est distributeur"
+    },
+    "our-clients": {
+        "title": "Ils nous font confiance !"
+    },
+    "payment-providers-options": {
+        "error_message": "Une erreur est survenue",
+        "initializing_session": "Initialisation de la session de paiement...",
+        "error_display": "Erreur :"
     },
     "privacy-policy": {
         "name": "Politique de confidentialité",
@@ -32,10 +91,101 @@
         "remove_from_cart": "Retirer du panier",
         "loading": "Chargement..."
     },
+    "product-item": {
+        "alt_product_image": "Image du produit",
+        "alt_image_not_found": "Image non trouvée",
+        "select_button": "Sélectionner"
+    },
+    "products": {
+        "hero_title": "L'art de la couleur au service du vin !",
+        "hero_subtitle": "Découvrez notre poudre naturelle, créée pour donner vie et prestige à chaque tonneau, tout en respectant le caractère artisanal du vin.",
+        "section_title": "Nos produits",
+        "loading": "Chargement..."
+    },
+    "shipping-address": {
+        "title": "Où devons-nous envoyer votre commande ?",
+        "subtitle": "Entrez votre nom et votre adresse :",
+        "contact_details": "Quels sont vos coordonnées ?",
+        "company": "Entreprise",
+        "first_name": "Prénom",
+        "last_name": "Nom",
+        "address_1": "Adresse ligne 1",
+        "address_2": "Adresse ligne 2",
+        "city": "Ville",
+        "postal_code": "Code postal",
+        "country": "Pays",
+        "phone": "Téléphone",
+        "email": "Email",
+        "phone_placeholder": "utiliser le format +33",
+        "submitting": "Envoi en cours...",
+        "proceed_to_payment": "Passer au paiement"
+    },
+    "shipping-options": {
+        "title": "Choisissez votre méthode de livraison",
+        "no_options": "Aucune option de livraison disponible",
+        "confirm_button": "Confirmer l'option de livraison",
+        "loading": "Chargement..."
+    },
+    "stripe-payment": {
+        "title": "Comment souhaitez-vous payer ?",
+        "payment_in_full": "Paiement intégral :",
+        "credit_card_option": "Carte de crédit",
+        "card_details_label": "Entrez les détails de votre carte de crédit :",
+        "invoice_address": "Adresse de facturation",
+        "edit_button": "Modifier",
+        "save_button": "Enregistrer",
+        "processing": "Traitement en cours...",
+        "proceed_to_purchase": "Passer à l'achat",
+        "company_placeholder": "Entreprise",
+        "first_name_placeholder": "Prénom",
+        "last_name_placeholder": "Nom",
+        "address1_placeholder": "Adresse ligne 1",
+        "address2_placeholder": "Adresse ligne 2",
+        "city_placeholder": "Ville",
+        "postal_code_placeholder": "Code postal"
+    },
+    "thanks": {
+        "title": "Merci pour votre commande !",
+        "message": "Merci pour votre achat ! Vinocolor et son équipe sont ravis de vous compter parmi nos clients et feront tout leur possible pour expédier votre produit dans les plus brefs délais. Si vous avez des questions, veuillez contacter notre équipe à l'adresse suivante :",
+        "contact_email": "contact@vinocolor.fr",
+        "back_home_button": "Retour à l'accueil",
+        "alt_checkmark": "Icône de confirmation de commande",
+        "alt_banner": "Bannière de remerciement"
+    },
+    "user-guide": {
+        "title": "Guide de l'utilisateur",
+        "steps": {
+            "1": "Achetez un ou plusieurs pots de VINOCOLOR (en fonction du nombre de tonneaux à colorer) chez un revendeur ou en commandant sur ce site.",
+            "2": "Mélangez la poudre de couleur VINOCOLOR avec de l'eau en quantités précises (1 litre d'eau pour 100 grammes de poudre de couleur).",
+            "3": "Prenez une éponge ou un pinceau et brossez soigneusement le centre des tonneaux."
+        }
+    },
+    "why-vino": {
+        "title": "Pourquoi utiliser Vinocolor ?",
+        "items": {
+            "1": "Une couleur éclatante qui ajoutera une touche d'élégance à votre cave !",
+            "2": "Une composition naturelle sans risque pour le vin !",
+            "3": "Le respect des traditions vinicoles françaises !"
+        }
+    },
     "layout": {
         "home": "Accueil",
         "products": "Produits",
-        "about" : "À propos",
-        "contact" : "Contact"
+        "about": "À propos",
+        "contact": "Contact"
+    },
+    "about": {
+        "title": "Vinocolor, une histoire de couleur, de tradition et d'excellence !",
+        "subtitle": "Plongez dans l'histoire de Vinocolor, une marque née de la passion du vin et de l'art de la couleur, où chaque pigment raconte l'histoire d'une nouvelle aventure",
+        "item1": {
+            "title": "L'art de sublimer les tonneaux",
+            "subtitle": "ORIGINE NATURELLE",
+            "description": "Vinocolor incarne une innovation naturelle, née d'une passion pour le vin et du respect du savoir-faire traditionnel. Cette poudre unique, composée à 80 % de vin rouge lyophilisé et à 20 % d'extrait de raisin, est conçue pour améliorer l'apparence des tonneaux en masquant les taches de vin."
+        },
+        "item2": {
+            "title": "La marque qui se distingue en rouge",
+            "subtitle": "ÉLÉGANCE PRÉSERVÉE",
+            "description": "Vinocolor s'applique sur la partie centrale des tonneaux, appelée le jable, pour préserver leur apparence au cours des différentes étapes de la vinification, notamment lors des ouillages. Avec Vinocolor, chaque tonneau conserve une apparence soignée et élégante, en parfaite harmonie avec l'art de la vinification."
+        }
     }
 }

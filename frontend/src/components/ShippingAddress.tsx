@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useUpdateCart } from "medusa-react";
 import "./ShippingAddress.css";
 import "./common.css";
@@ -13,6 +14,7 @@ function ShippingAddress({
   onAddressUpdateSuccess,
   cartId,
 }: ShippingAddressProps) {
+  const { t } = useTranslation();
   const updateCart = useUpdateCart(cartId);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -216,13 +218,11 @@ function ShippingAddress({
           <div className="loader"></div>
         </div>
       )}
-      <h2>Where we have to send your order?</h2>
-      <h3>Enter your name and address:</h3>
+      <h2>{t("shipping-address.title")}</h2>
+      <h3>{t("shipping-address.subtitle")}</h3>
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper">
-          <label htmlFor="company" className="floating-label">
-            Company
-          </label>
+          <label htmlFor="company">{t("shipping-address.company")}</label>
           <input
             id="company"
             type="text"
@@ -232,9 +232,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="first_name" className="floating-label">
-            Prénom
-          </label>
+          <label htmlFor="first_name">{t("shipping-address.first_name")}</label>
           *
           <input
             id="first_name"
@@ -246,7 +244,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="last_name">Nom</label>*
+          <label htmlFor="last_name">{t("shipping-address.last_name")}</label>*
           <input
             id="last_name"
             type="text"
@@ -257,7 +255,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="address_1">Adresse 1</label>*
+          <label htmlFor="address_1">{t("shipping-address.address_1")}</label>*
           <input
             id="address_1"
             type="text"
@@ -268,7 +266,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="address_2">Adresse 2</label>
+          <label htmlFor="address_2">{t("shipping-address.address_2")}</label>
           <input
             id="address_2"
             type="text"
@@ -278,7 +276,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="city">Ville</label>*
+          <label htmlFor="city">{t("shipping-address.city")}</label>*
           <input
             id="city"
             type="text"
@@ -289,7 +287,10 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="postal_code">Code Postal</label>*
+          <label htmlFor="postal_code">
+            {t("shipping-address.postal_code")}
+          </label>
+          *
           <input
             id="postal_code"
             type="text"
@@ -300,7 +301,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="country_code">Country</label>*
+          <label htmlFor="country_code">{t("shipping-address.country")}</label>*
           <select
             id="country_code"
             name="country_code"
@@ -316,23 +317,19 @@ function ShippingAddress({
           </select>
         </div>
         <div className="input-wrapper">
-          <label htmlFor="phone" className="floating-label">
-            Téléphone
-          </label>
+          <label htmlFor="phone">{t("shipping-address.phone")}</label>
           <input
             id="phone"
             type="text"
             name="phone"
             value={address.phone}
             onChange={handleChangeAddress}
-            placeholder="use format +33"
+            placeholder={t("shipping-address.phone_placeholder")}
           />
         </div>
-        <h3>What are your contact details ?</h3>
+        <h3>{t("shipping-address.contact_details")}</h3>
         <div className="input-wrapper">
-          <label htmlFor="first_name" className="floating-label">
-            Prénom
-          </label>
+          <label htmlFor="first_name">{t("shipping-address.first_name")}</label>
           *
           <input
             id="first_name"
@@ -344,7 +341,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="last_name">Nom</label>*
+          <label htmlFor="last_name">{t("shipping-address.last_name")}</label>*
           <input
             id="last_name"
             type="text"
@@ -355,7 +352,7 @@ function ShippingAddress({
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="email">Email</label>*
+          <label htmlFor="email">{t("shipping-address.email")}</label>*
           <input
             id="email"
             type="text"
@@ -366,7 +363,9 @@ function ShippingAddress({
           />
         </div>
         <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : "Proceed to Payment"}
+          {isSubmitting
+            ? t("shipping-address.submitting")
+            : t("shipping-address.proceed_to_payment")}
         </button>
       </form>
     </div>

@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import emailjs from "emailjs-com";
 import contactSvg from "../assets/img/contact.svg";
 import "./Contact.css";
 
 export default function Contact() {
+  const { t } = useTranslation();
   const emailRef = useRef<HTMLInputElement | null>(null);
   const nameRef = useRef<HTMLInputElement | null>(null);
   const subjectRef = useRef<HTMLInputElement | null>(null);
@@ -21,7 +23,7 @@ export default function Contact() {
       !subjectRef.current ||
       !messageRef.current
     ) {
-      setStatusMessage("Please fill out all fields.");
+      setStatusMessage(t("contact.status_fill_fields"));
       return;
     }
 
@@ -31,7 +33,7 @@ export default function Contact() {
 
     if (!serviceId || !templateId || !publicKey) {
       console.error("EmailJS environment variables are missing.");
-      setStatusMessage("Configuration error. Please try again later.");
+      setStatusMessage(t("contact.status_config_error"));
       return;
     }
 
@@ -51,14 +53,14 @@ export default function Contact() {
         publicKey
       );
 
-      setStatusMessage("Your message has been sent successfully!");
+      setStatusMessage(t("contact.status_sent"));
       nameRef.current.value = "";
       emailRef.current.value = "";
       subjectRef.current.value = "";
       messageRef.current.value = "";
     } catch (error) {
       console.error("Error sending email:", error);
-      setStatusMessage("Failed to send the message. Please try again.");
+      setStatusMessage(t("contact.status_error"));
     } finally {
       setLoading(false);
     }
@@ -67,12 +69,9 @@ export default function Contact() {
   return (
     <div className="contact">
       <div className="header">
-        <h1>Get in touch</h1>
+        <h1>{t("contact.title")}</h1>
         <p>
-          Do you have a question, a project or simply want to find out more
-          about Vinocolor? Our team would be delighted to hear from you. Send us
-          a message below or send any special request to the following address:{" "}
-          <b>contact@vinocolor.fr</b>
+          {t("contact.description")} <b>{t("contact.email")}</b>
         </p>
       </div>
       <div className="box-send-mail">
@@ -80,11 +79,11 @@ export default function Contact() {
         <form onSubmit={handleSubmit}>
           <div className="form-name-email-subject">
             <div>
-              <label htmlFor="name">Your name</label>
+              <label htmlFor="name">{t("contact.name_label")}</label>
               <input type="text" id="name" name="name" ref={nameRef} required />
             </div>
             <div>
-              <label htmlFor="email">Your email</label>
+              <label htmlFor="email">{t("contact.email_label")}</label>
               <input
                 type="email"
                 id="email"
@@ -94,7 +93,7 @@ export default function Contact() {
               />
             </div>
             <div>
-              <label htmlFor="subject">Your subject</label>
+              <label htmlFor="subject">{t("contact.subject_label")}</label>
               <input
                 type="text"
                 id="subject"
@@ -105,7 +104,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="message">
-            <label htmlFor="message">Message</label>
+            <label htmlFor="message">{t("contact.message_label")}</label>
             <textarea
               id="message"
               name="message"
@@ -114,7 +113,7 @@ export default function Contact() {
             ></textarea>
           </div>
           <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Send your message"}
+            {loading ? t("contact.sending_button") : t("contact.send_button")}
           </button>
         </form>
         {statusMessage && <p>{statusMessage}</p>}

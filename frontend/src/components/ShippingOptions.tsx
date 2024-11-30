@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   useAddShippingMethodToCart,
   useCartShippingOptions,
@@ -17,6 +18,7 @@ export default function ShippingOptions({
   onShippingOptionsUpdateSuccess,
   cartId,
 }: ShippingOptionsProps) {
+  const { t } = useTranslation();
   const { shipping_options, isLoading } = useCartShippingOptions(cartId);
   const addShippingMethod = useAddShippingMethodToCart(cartId);
   const [selectedOption, setSelectedOption] = useState<string | undefined>(
@@ -50,9 +52,9 @@ export default function ShippingOptions({
             <div className="loader"></div>
           </div>
         ))}
-      <h2>Choisissez votre méthode de livraison</h2>
+      <h2>{t("shipping-options.title")}</h2>
       {shipping_options && !shipping_options.length && (
-        <span>Aucune option de livraison disponible</span>
+        <span>{t("shipping-options.no_options")}</span>
       )}
       {shipping_options && (
         <form
@@ -81,7 +83,7 @@ export default function ShippingOptions({
             ))}
           </ul>
           <button type="submit" disabled={!selectedOption || isSubmitting}>
-            Confirmer l'option de livraison
+            {t("shipping-options.confirm_button")}
           </button>
         </form>
       )}

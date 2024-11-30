@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { StripePayment } from "./StripePayment";
 import "./common.css";
 import { useCartHomeMade } from "../CartContext";
 import CartRecap from "./CartRecap";
 
 export default function PaymentProvidersOptions() {
+  const { t } = useTranslation();
   const { cartIdState, activePaymentSession } = useCartHomeMade();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -40,7 +42,7 @@ export default function PaymentProvidersOptions() {
           initialized.current = true; // Marque comme initialisé
           setIsInitialized(true);
         } else {
-          throw new Error("Failed to initialize payment session");
+          throw new Error(t("payment-providers-options.error_message"));
         }
       }
 
@@ -48,7 +50,7 @@ export default function PaymentProvidersOptions() {
       setIsInitialized(true); // Déclenche l’affichage de StripePayment
     } catch (error) {
       console.error("Error initializing payment session:", error);
-      setError("An error occurred");
+      setError(t("payment-providers-options.error_message"));
     } finally {
       setLoading(false);
     }
@@ -69,10 +71,14 @@ export default function PaymentProvidersOptions() {
           <div className="loader"></div>
         </div>
       )}
-      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+      {error && (
+        <p style={{ color: "red" }}>
+          {t("payment-providers-options.error_display")} {error}
+        </p>
+      )}
       {isInitialized && <StripePayment />}
       {!loading && !isInitialized && !error && (
-        <p>Initializing payment session...</p>
+        <p>{t("payment-providers-options.initializing_session")}</p>
       )}
       <div style={{ width: "40%" }}>
         <CartRecap />

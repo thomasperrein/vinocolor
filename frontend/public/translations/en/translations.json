@@ -5,6 +5,7 @@
     },
     "cart":{
         "name": "Cart",
+        "title": "Your cart",
         "empty": "Your cart is empty",
         "checkout": "Checkout",
         "total": "Total",
@@ -12,7 +13,65 @@
         "fetch_error": "Error fetching cart",
         "error": "Error",
         "loading": "Loading...",
-        "items_in_cart" : "Items in cart"
+        "items_in_cart" : "Items in cart",
+        "prince": "Price"
+    },
+    "cart-recap": {
+        "error" : "Error: no cart found.",
+        "loading": "Your cart is loading...",
+        "global-error": "An error occured while fetching your cart. Please try again later.",
+        "title": "Cart recap",
+        "product-title": "Product",
+        "product-quantity": "Quantity",
+        "total-price": "Price",
+        "shipping-price": "Shipping price",
+        "total": "Total",
+        "empty": "Your cart is empty"
+    },
+    "checkout" : {
+        "loading": "Loading..."
+    },
+    "contact": {
+        "title": "Get in touch",
+        "description": "Do you have a question, a project or simply want to find out more about Vinocolor? Our team would be delighted to hear from you. Send us a message below or send any special request to the following address:",
+        "email": "contact@vinocolor.fr",
+        "name_label": "Your name",
+        "email_label": "Your email",
+        "subject_label": "Your subject",
+        "message_label": "Message",
+        "send_button": "Send your message",
+        "sending_button": "Sending...",
+        "status_sent": "Your message has been sent successfully!",
+        "status_error": "Failed to send the message. Please try again.",
+        "status_fill_fields": "Please fill out all fields.",
+        "status_config_error": "Configuration error. Please try again later."
+    },
+    "distributor-box": {
+        "description": "Vinocolor is proud to offer its products internationally, with widespread distribution in several countries:",
+        "countries": {
+            "france": "France",
+            "spain": "Spain",
+            "italy": "Italy",
+            "germany": "Germany",
+            "hungary": "Hungary",
+            "greece": "Greece",
+            "canada": "Canada",
+            "united_states": "United States"
+        }
+    },
+    "international-distributor": {
+        "title": "International Distributor"
+    },
+    "map": {
+        "legend": ": Countries where Vinocolor is a distributor"
+    },
+    "our-clients": {
+        "title": "They put their trust in us!"
+    },
+    "payment-providers-options": {
+        "error_message": "An error occurred",
+        "initializing_session": "Initializing payment session...",
+        "error_display": "Error:"
     },
     "privacy-policy": {
         "name": "Privacy Policy",
@@ -32,10 +91,101 @@
         "remove_from_cart": "Remove from cart",
         "loading": "Loading..."
     },
+    "product-item": {
+        "alt_product_image": "Product image",
+        "alt_image_not_found": "Image not found",
+        "select_button": "Select"
+    },
+    "products": {
+        "hero_title": "The art of colour in the service of wine!",
+        "hero_subtitle": "Discover our natural powder, created to give life and prestige to each barrel, while respecting the artisanal character of the wine.",
+        "section_title": "Our products",
+        "loading": "Loading..."
+    },
+    "shipping-address": {
+        "title": "Where we have to send your order?",
+        "subtitle": "Enter your name and address:",
+        "contact_details": "What are your contact details?",
+        "company": "Company",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "address_1": "Address Line 1",
+        "address_2": "Address Line 2",
+        "city": "City",
+        "postal_code": "Postal Code",
+        "country": "Country",
+        "phone": "Phone",
+        "email": "Email",
+        "phone_placeholder": "use format +33",
+        "submitting": "Submitting...",
+        "proceed_to_payment": "Proceed to Payment"
+    },
+    "shipping-options": {
+        "title": "Choose your shipping method",
+        "no_options": "No shipping options available",
+        "confirm_button": "Confirm shipping option",
+        "loading": "Loading..."
+    },
+    "stripe-payment": {
+        "title": "How would you like to pay?",
+        "payment_in_full": "Payment in full:",
+        "credit_card_option": "Credit Card",
+        "card_details_label": "Enter your credit card details:",
+        "invoice_address": "Invoice Address",
+        "edit_button": "Edit",
+        "save_button": "Save",
+        "processing": "Processing...",
+        "proceed_to_purchase": "Proceed to purchase",
+        "company_placeholder": "Company",
+        "first_name_placeholder": "First Name",
+        "last_name_placeholder": "Last Name",
+        "address1_placeholder": "Address Line 1",
+        "address2_placeholder": "Address Line 2",
+        "city_placeholder": "City",
+        "postal_code_placeholder": "Postal Code"
+    },
+    "thanks": {
+        "title": "Thank you for your order!",
+        "message": "Thank you for your purchase! Vinocolor and its team are delighted to count you among our customers and will do everything in their power to dispatch your product as quickly as possible. If you have any questions, please contact our team at:",
+        "contact_email": "contact@vinocolor.fr",
+        "back_home_button": "Back Home",
+        "alt_checkmark": "Order confirmation checkmark",
+        "alt_banner": "Thank you banner"
+    },
+    "user-guide": {
+        "title": "User Guide",
+        "steps": {
+            "1": "Purchase one or more jars of VINOCOLOR (depending on the number of barrels to be coloured) from a retailer or by ordering from this website.",
+            "2": "Mix VINOCOLOR colour powder with water in precise quantities (1 litre of water for 100 grams of colour powder).",
+            "3": "Take a sponge or brush and brush the centre of the barrels carefully."
+        }
+    },
+    "why-vino": {
+        "title": "Why use Vinocolor?",
+        "items": {
+            "1": "A brilliant colour that will add a touch of elegance to your cellar!",
+            "2": "A natural composition with no risk for wine!",
+            "3": "Respect for French winemaking traditions!"
+        }
+    },
     "layout": {
         "home": "Home",
         "products": "Products",
         "about" : "About",
         "contact" : "Contact"
+    },
+    "about": {
+        "title": "Vinocolor, une histoire de couleur, de tradition et d'excellence !",
+        "subtitle": "Plongez dans l'histoire de Vinocolor, une marque née de la passion du vin et de l'art de la couleur, où chaque pigment raconte l'histoire d'une nouvelle aventure",
+        "item1":{
+            "title": "The Art of Sublimating Barrels",
+            "subtitle": "NATURAL ORIGIN",
+            "description":"Vinocolor embodies natural innovation, born of a passion for wine and respect for traditional know-how. This unique powder, made from 80% freeze-dried red wine and 20% grape extract, is designed to enhance the appearance of barrels by masking wine spills."
+        },
+        "item2":{
+            "title": "The brand with the distinction in Red",
+            "subtitle": "PRESERVED ELEGANCE",
+            "description": "Vinocolor is applied to the central area of the barrels, known as the jable, to preserve their appearance during the various stages of vinification, particularly during topping-up. With Vinocolor, each barrel retains its neat, elegant appearance, in perfect harmony with the art of winemaking."
+    }
     }
 }

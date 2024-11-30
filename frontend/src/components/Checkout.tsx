@@ -5,6 +5,7 @@ import ShippingOptions from "./ShippingOptions";
 import "./Checkout.css";
 import { useNavigate } from "react-router-dom";
 import { useCartHomeMade } from "../CartContext";
+import { useTranslation } from "react-i18next";
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -12,6 +13,8 @@ export default function Checkout() {
   const [isAddressUpdated, setIsAddressUpdated] = useState(false);
   const [isShippingOptionsUpdated, setIsShippingOptionsUpdated] =
     useState(false);
+
+  const { t } = useTranslation();
 
   const handleAddressUpdateSuccess = () => {
     setIsAddressUpdated(true); // Met à jour l'état lorsque l'adresse est mise à jour avec succès
@@ -24,7 +27,7 @@ export default function Checkout() {
 
   if (!cartIdState) {
     // Affiche une indication de chargement pendant que cartId est en train d'être récupéré
-    return <p>Chargement...</p>;
+    return <p>{t("checkout.loading")}</p>;
   }
 
   return (
