@@ -52,8 +52,7 @@ export default function Product() {
         quantity,
       },
       {
-        onSuccess: ({ cart }) => {
-          console.log("Cart items:", cart.items);
+        onSuccess: () => {
           setIsAdding(false);
           refetch();
           toast.success(t("product.item_added_success"));

@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { useCartHomeMade } from "../CartContext";
 
 export default function Checkout() {
-  console.log("chargement checkout...");
   const navigate = useNavigate();
   const { cartIdState } = useCartHomeMade();
   const [isAddressUpdated, setIsAddressUpdated] = useState(false);

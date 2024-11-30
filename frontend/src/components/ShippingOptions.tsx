@@ -17,7 +17,6 @@ export default function ShippingOptions({
   onShippingOptionsUpdateSuccess,
   cartId,
 }: ShippingOptionsProps) {
-  console.log("chargement options...");
   const { shipping_options, isLoading } = useCartShippingOptions(cartId);
   const addShippingMethod = useAddShippingMethodToCart(cartId);
   const [selectedOption, setSelectedOption] = useState<string | undefined>(

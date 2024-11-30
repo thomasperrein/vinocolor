@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { StripePayment } from "./StripePayment";
 import "./common.css";
 import { useCartHomeMade } from "../CartContext";
+import CartRecap from "./CartRecap";
 
 export default function PaymentProvidersOptions() {
   const { cartIdState, activePaymentSession } = useCartHomeMade();
@@ -10,15 +11,12 @@ export default function PaymentProvidersOptions() {
   const [isInitialized, setIsInitialized] = useState(false); // Pour déclencher l'affichage de StripePayment
   const initialized = useRef(false); // Persistant entre les re-renders
 
-  console.log("Rendering PaymentProvidersOptions");
-
   const initializePaymentSession = async () => {
     if (loading || initialized.current) return; // Empêche plusieurs initialisations
 
     try {
       setLoading(true);
       setError(""); // Réinitialise les erreurs avant un nouvel appel
-      console.log("Initializing payment session...");
 
       const response = await fetch(
         `http://localhost:9000/store/carts/${cartIdState}/payment-sessions`,
@@ -65,7 +63,7 @@ export default function PaymentProvidersOptions() {
   }, [activePaymentSession]); // Se déclenche seulement quand `activePaymentSession` change
 
   return (
-    <div style={{ width: "60%" }}>
+    <div style={{ width: "100%", display: "flex" }}>
       {loading && (
         <div className="loader-overlay">
           <div className="loader"></div>
@@ -76,6 +74,9 @@ export default function PaymentProvidersOptions() {
       {!loading && !isInitialized && !error && (
         <p>Initializing payment session...</p>
       )}
+      <div style={{ width: "40%" }}>
+        <CartRecap />
+      </div>
     </div>
   );
 }

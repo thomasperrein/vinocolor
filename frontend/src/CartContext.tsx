@@ -15,7 +15,7 @@ interface CartContextType {
   isLoading: boolean;
   error: Error | null;
   refetch: ReturnType<typeof useGetCart>["refetch"];
-  handleCartIdChange: (newCartId: string) => void;
+  handleCartIdChange: (newCartId: string | undefined) => void;
   createCart: ReturnType<typeof useCart>["createCart"];
   createLineItem: ReturnType<typeof useCreateLineItem>;
   activePaymentSession: PaymentSession | undefined;
@@ -58,7 +58,12 @@ export const CartProviderHomeMade: React.FC<CartProviderProps> = ({
     }
   }, [cart?.items, cartIdState]);
 
-  const handleCartIdChange = (newCartId: string) => {
+  const handleCartIdChange = (newCartId: string | undefined) => {
+    if (!newCartId) {
+      localStorage.removeItem("cart_id");
+      setCartIdState("error");
+      return;
+    }
     localStorage.setItem("cart_id", newCartId);
     setCartIdState(newCartId);
   };
@@ -68,8 +73,6 @@ export const CartProviderHomeMade: React.FC<CartProviderProps> = ({
   } else {
     clientSecret = undefined;
   }
-
-  console.log("in CartProviderHomeMade, cartIdState:", cartIdState);
 
   return (
     <CartContext.Provider

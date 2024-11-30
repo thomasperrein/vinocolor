@@ -13,7 +13,6 @@ function ShippingAddress({
   onAddressUpdateSuccess,
   cartId,
 }: ShippingAddressProps) {
-  console.log("chargement address...");
   const updateCart = useUpdateCart(cartId);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -80,7 +79,6 @@ function ShippingAddress({
       }
 
       const { access_token } = await tokenResponse.json();
-      console.log("Access Token:", access_token);
 
       // Récupérer ou créer le client
       const customerPromise = (async () => {
@@ -101,7 +99,6 @@ function ShippingAddress({
           const { customers } = await findCustomerResponse.json();
           if (customers.length > 0) {
             customerId = customers[0].id;
-            console.log("Client existant trouvé :", customers[0]);
           }
         }
 
@@ -131,7 +128,6 @@ function ShippingAddress({
           const { customer: customerCreated } =
             await createCustomerResponse.json();
           customerId = customerCreated.id;
-          console.log("Nouveau client créé :", customerCreated);
         }
 
         return customerId;
@@ -160,9 +156,6 @@ function ShippingAddress({
           throw new Error("Erreur lors de la mise à jour du panier");
         }
 
-        const { cart: cartAffected } = await cartResponse.json();
-        console.log("Panier mis à jour :", cartAffected);
-
         return true;
       });
 
@@ -185,7 +178,6 @@ function ShippingAddress({
           },
           {
             onSuccess: () => {
-              console.log("Adresse de livraison mise à jour avec succès !");
               resolve();
             },
             onError: (error) => {
