@@ -58,6 +58,12 @@ const plugins = [
     options: {
       api_key: process.env.STRIPE_SECRET_KEY,
     },
+  },
+  {
+    resolve: `@rsc-labs/medusa-documents`,
+    options: {
+      enableUI: true
+    }
   }
 ];
 

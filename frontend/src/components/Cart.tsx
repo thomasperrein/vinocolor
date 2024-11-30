@@ -1,13 +1,13 @@
-import { useGetCart, useUpdateLineItem, useDeleteLineItem } from "medusa-react";
+import { useUpdateLineItem, useDeleteLineItem } from "medusa-react";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import "./Cart.css";
+import { useCartHomeMade } from "../CartContext";
 
 const Cart = () => {
-  const cartId = localStorage.getItem("cart_id") || "error";
-  const { cart, error, refetch } = useGetCart(cartId);
-  const { mutate: updateItem } = useUpdateLineItem(cartId);
-  const { mutate: deleteItem } = useDeleteLineItem(cartId);
+  const { cartIdState, cart, error, refetch } = useCartHomeMade();
+  const { mutate: updateItem } = useUpdateLineItem(cartIdState);
+  const { mutate: deleteItem } = useDeleteLineItem(cartIdState);
   const { t } = useTranslation();
 
   const [totalPrice, setTotalPrice] = useState(0);
@@ -173,7 +173,7 @@ const Cart = () => {
       ) : (
         <>
           {error && <p className="cart-error">{t("cart.error")}</p>}
-          {cartId !== "error" && !error && (
+          {cartIdState !== "error" && !error && (
             <p className="cart-empty">{t("cart.empty")}</p>
           )}
         </>

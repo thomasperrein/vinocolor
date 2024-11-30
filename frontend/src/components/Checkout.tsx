@@ -9,7 +9,7 @@ import { useCartHomeMade } from "../CartContext";
 export default function Checkout() {
   console.log("chargement checkout...");
   const navigate = useNavigate();
-  const { cartId } = useCartHomeMade();
+  const { cartIdState } = useCartHomeMade();
   const [isAddressUpdated, setIsAddressUpdated] = useState(false);
   const [isShippingOptionsUpdated, setIsShippingOptionsUpdated] =
     useState(false);
@@ -20,10 +20,10 @@ export default function Checkout() {
 
   const handleShippingOptionsUpdateSuccess = () => {
     setIsShippingOptionsUpdated(true); // Met à jour l'état lorsque les options de livraison sont mises à jour avec succès
-    navigate("/payment/" + cartId); // Redirige l'utilisateur vers la page de paiement
+    navigate("/payment"); // Redirige l'utilisateur vers la page de paiement
   };
 
-  if (!cartId) {
+  if (!cartIdState) {
     // Affiche une indication de chargement pendant que cartId est en train d'être récupéré
     return <p>Chargement...</p>;
   }
@@ -35,13 +35,13 @@ export default function Checkout() {
         {!isAddressUpdated && !isShippingOptionsUpdated && (
           <ShippingAddress
             onAddressUpdateSuccess={handleAddressUpdateSuccess}
-            cartId={cartId}
+            cartId={cartIdState}
           />
         )}
         {isAddressUpdated && !isShippingOptionsUpdated && (
           <ShippingOptions
             onShippingOptionsUpdateSuccess={handleShippingOptionsUpdateSuccess}
-            cartId={cartId}
+            cartId={cartIdState}
           />
         )}
         <div className="sidebar">

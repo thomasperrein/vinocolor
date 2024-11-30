@@ -1,7 +1,5 @@
 TODO LIST :
 
-- Frontend css
-- la gestion du panier qui est pas terrible (création, affectation customer...)
 - création de compte customer
 - génération de facture à partir d'order
 - clé de traduction
@@ -11,21 +9,15 @@ TODO LIST :
   - payment provider
 
 1. contact en filled P3
-2. générer numéro de commade en metadata
-3. modification de l'invoice address
+2. modification de l'invoice address
+3. qunad on clique sur retirer ajouter le chargement
+4. pouvoir cliquer sur l'entiereté du button commander
+5. pouvoir cliquer sur l'entiereté du boutton de livraison
 
-4. payment providers
-
-5. clé trad
-
-6. génération facture
+6. clé trad
 
 7. SEO
 
 8. deploiement
 
-9. rendre le bouton livraison full remplissable
-
-10. rendre la div cliquable du produit
-
-11. Loading jusqu'au paiement pour le checkout
+9. reduction

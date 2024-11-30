@@ -5,15 +5,23 @@ import React, {
   useState,
   ReactNode,
 } from "react";
-import { Cart, useGetCart } from "medusa-react";
+import { Cart, useCart, useCreateLineItem, useGetCart } from "medusa-react";
+import { PaymentSession } from "@medusajs/medusa";
 
 interface CartContextType {
   cart: Omit<Cart, "refundable_amount" | "refunded_total"> | undefined;
-  cartId: string;
+  cartIdState: string;
   cartQuantity: number;
   isLoading: boolean;
   error: Error | null;
-  refetch: () => void;
+  refetch: ReturnType<typeof useGetCart>["refetch"];
+  handleCartIdChange: (newCartId: string) => void;
+  createCart: ReturnType<typeof useCart>["createCart"];
+  createLineItem: ReturnType<typeof useCreateLineItem>;
+  activePaymentSession: PaymentSession | undefined;
+  clientSecret: string | undefined;
+  reloadTrigger: number;
+  triggerReload: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -25,9 +33,20 @@ interface CartProviderProps {
 export const CartProviderHomeMade: React.FC<CartProviderProps> = ({
   children,
 }) => {
-  const cartId = localStorage.getItem("cart_id") || "error";
-  const { cart, isLoading, error, refetch } = useGetCart(cartId);
   const [cartQuantity, setCartQuantity] = useState(0);
+  const [cartIdState, setCartIdState] = useState(
+    localStorage.getItem("cart_id") || "error"
+  );
+  const { cart, isLoading, error, refetch } = useGetCart(cartIdState);
+  const { createCart } = useCart();
+  const createLineItem = useCreateLineItem(cartIdState);
+  const activePaymentSession = cart?.payment_sessions?.[0];
+
+  const [reloadTrigger, setReloadTrigger] = useState(0);
+
+  const triggerReload = () => {
+    setReloadTrigger((prev) => prev + 1);
+  };
 
   useEffect(() => {
     if (cart?.items) {
@@ -37,11 +56,38 @@ export const CartProviderHomeMade: React.FC<CartProviderProps> = ({
       );
       setCartQuantity(totalQuantity);
     }
-  }, [cart?.items]);
+  }, [cart?.items, cartIdState]);
+
+  const handleCartIdChange = (newCartId: string) => {
+    localStorage.setItem("cart_id", newCartId);
+    setCartIdState(newCartId);
+  };
+  let clientSecret: string | undefined;
+  if (cart?.payment_sessions?.[0]?.data.client_secret) {
+    clientSecret = cart?.payment_sessions?.[0].data.client_secret as string;
+  } else {
+    clientSecret = undefined;
+  }
+
+  console.log("in CartProviderHomeMade, cartIdState:", cartIdState);
 
   return (
     <CartContext.Provider
-      value={{ cart, cartId, isLoading, error, cartQuantity, refetch }}
+      value={{
+        cart,
+        cartIdState,
+        isLoading,
+        error,
+        cartQuantity,
+        refetch,
+        handleCartIdChange,
+        createCart,
+        createLineItem,
+        activePaymentSession,
+        clientSecret,
+        reloadTrigger,
+        triggerReload,
+      }}
     >
       {children}
     </CartContext.Provider>

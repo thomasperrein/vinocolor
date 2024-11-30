@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useCart, useCreateLineItem, useProduct } from "medusa-react";
+import { useProduct } from "medusa-react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import { useTranslation } from "react-i18next";
 import { toast, ToastContainer } from "react-toastify";
@@ -17,35 +17,25 @@ export default function Product() {
   const [modalImage, setModalImage] = useState("");
   const [isAdding, setIsAdding] = useState(false);
 
-  const { createCart } = useCart();
-  const { refetch, cartId } = useCartHomeMade();
-
-  const createLineItem = useCreateLineItem(cartId);
+  const {
+    createCart,
+    cartIdState,
+    createLineItem,
+    refetch,
+    handleCartIdChange,
+  } = useCartHomeMade();
 
   const handleCreateCartAndAddItem = (variantId: string, quantity: number) => {
     setIsAdding(true);
     createCart.mutate(
-      {},
       {
-        onSuccess: ({ cart }) => {
-          localStorage.setItem("cart_id", cart.id);
-          fetch(`http://localhost:9000/store/carts/${cart.id}`, {
-            method: "POST",
-            credentials: "include",
-            headers: {
-              "x-publishable-api-key": import.meta.env
-                .VITE_REACT_APP_MEDUSA_PUBLISHABLE_API_KEY,
-            },
-            body: JSON.stringify({
-              customer_id: "cus_01JCK1EDMWFK1S3H0B0FNMR0PV",
-            }),
-          })
-            .then((res) => res.json())
-            .then((res) => {
-              console.log(res);
-              // Once the cart is successfully created, add the item to the cart
-              handleAddItem(variantId, quantity);
-            });
+        items: [{ variant_id: variantId, quantity: quantity }],
+      },
+      {
+        onSuccess: async ({ cart }) => {
+          handleCartIdChange(cart.id);
+          toast.success(t("product.item_added_success"));
+          setIsAdding(false);
         },
         onError: () => {
           setIsAdding(false);
@@ -109,7 +99,7 @@ export default function Product() {
               <button
                 onClick={() => {
                   if (product.variants[0].id) {
-                    if (cartId === "error") {
+                    if (cartIdState === "error") {
                       handleCreateCartAndAddItem(product.variants[0].id, 1);
                     } else {
                       handleAddItem(product.variants[0].id, 1);

@@ -17,7 +17,7 @@ export const listPathElement = [
   { path: "/products/:id", element: <Product /> },
   { path: "/my-cart", element: <Cart /> },
   { path: "/checkout", element: <Checkout /> },
-  { path: "/payment/:id", element: <PaymentProvidersOptions /> },
+  { path: "/payment", element: <PaymentProvidersOptions /> },
   { path: "/contact", element: <Contact /> },
   { path: "/success-order", element: <Thanks /> },
 ];

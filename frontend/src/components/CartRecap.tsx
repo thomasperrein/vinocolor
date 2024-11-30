@@ -4,7 +4,8 @@ import "./CartRecap.css";
 import { useCartHomeMade } from "../CartContext";
 
 export default function CartRecap() {
-  const { cart, cartId, isLoading, error } = useCartHomeMade();
+  const { cart, cartIdState, isLoading, error, reloadTrigger } =
+    useCartHomeMade();
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -16,9 +17,9 @@ export default function CartRecap() {
       const shippingTotal = cart?.shipping_total || 0;
       setTotalPrice(cartTotal + shippingTotal);
     }
-  }, [cart?.items, cart?.shipping_total]);
+  }, [cart?.items, cart?.shipping_total, reloadTrigger]);
 
-  if (cartId === "error") {
+  if (cartIdState === "error") {
     return <div>Erreur: aucun panier trouvé.</div>;
   }
 

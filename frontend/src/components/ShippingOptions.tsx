@@ -6,6 +6,7 @@ import {
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import "./ShippingOptions.css";
 import "./common.css";
+import { useCartHomeMade } from "../CartContext";
 
 interface ShippingOptionsProps {
   onShippingOptionsUpdateSuccess: () => void;
@@ -23,6 +24,7 @@ export default function ShippingOptions({
     undefined
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { triggerReload } = useCartHomeMade();
 
   const handleAddShippingMethod = () => {
     setIsSubmitting(true);
@@ -35,7 +37,7 @@ export default function ShippingOptions({
       {
         onSuccess: () => {
           setIsSubmitting(false);
-          onShippingOptionsUpdateSuccess();
+          triggerReload();
         },
       }
     );
@@ -57,7 +59,7 @@ export default function ShippingOptions({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleAddShippingMethod();
+            onShippingOptionsUpdateSuccess();
           }}
         >
           <ul>
@@ -69,7 +71,10 @@ export default function ShippingOptions({
                     name="shipping_option"
                     value={option.id}
                     checked={selectedOption === option.id}
-                    onChange={() => setSelectedOption(option.id)}
+                    onChange={() => {
+                      setSelectedOption(option.id);
+                      handleAddShippingMethod();
+                    }}
                   />
                   {option.name} - {getFormattedPrice(option.amount!)}
                 </label>

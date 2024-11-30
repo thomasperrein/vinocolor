@@ -6,36 +6,30 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useGetCart } from "medusa-react";
 import "./StripePayment.css";
 import "./common.css";
 import { COUNTRIES_AND_CODE } from "../utils/countries";
 import { useNavigate } from "react-router-dom";
+import { useCartHomeMade } from "../CartContext";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_PUBLIC_STRIPE_KEY || "temp"
 );
 
-export function StripePayment({ cartId }: { cartId: string }) {
-  const { cart } = useGetCart(cartId);
-  const clientSecret = cart?.payment_sessions?.[0].data.client_secret as string;
-
+export function StripePayment() {
   return (
     <div className="stripe-payment-container">
       <h2>How would you like to pay?</h2>
-      <Elements stripe={stripePromise} options={{ clientSecret }}>
-        <StripeForm clientSecret={clientSecret} cartId={cartId} />
+      <Elements stripe={stripePromise}>
+        <StripeForm />
       </Elements>
     </div>
   );
 }
 
-const StripeForm: React.FC<{
-  clientSecret?: string;
-  cartId: string;
-}> = ({ clientSecret, cartId }) => {
+const StripeForm: React.FC = () => {
   const navigate = useNavigate();
-  const { cart } = useGetCart(cartId);
+  const { cart, clientSecret, cartIdState } = useCartHomeMade();
   const [loading, setLoading] = useState(false);
 
   const stripe = useStripe();
@@ -80,7 +74,7 @@ const StripeForm: React.FC<{
           console.error(error);
           return;
         }
-        fetch(`http://localhost:9000/store/carts/${cartId}/complete`, {
+        fetch(`http://localhost:9000/store/carts/${cartIdState}/complete`, {
           method: "POST",
           credentials: "include",
           headers: {
@@ -94,7 +88,6 @@ const StripeForm: React.FC<{
             if (type === "cart" && cart) {
               console.error(error);
             } else if (type === "order") {
-              alert("Order placed.");
               localStorage.removeItem("cart_id");
               navigate(`/success-order`);
             }

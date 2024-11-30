@@ -1,23 +1,27 @@
-import { useGetCart } from "medusa-react";
-import { useCallback, useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StripePayment } from "./StripePayment";
 import "./common.css";
-import { useParams } from "react-router-dom";
+import { useCartHomeMade } from "../CartContext";
 
 export default function PaymentProvidersOptions() {
-  const cartId = useParams().id;
-  const { cart } = useGetCart(cartId!);
+  const { cartIdState, activePaymentSession } = useCartHomeMade();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [isInitialized, setIsInitialized] = useState(false); // Pour déclencher l'affichage de StripePayment
+  const initialized = useRef(false); // Persistant entre les re-renders
+
+  console.log("Rendering PaymentProvidersOptions");
 
   const initializePaymentSession = async () => {
-    if (!cartId) {
-      return;
-    }
+    if (loading || initialized.current) return; // Empêche plusieurs initialisations
 
     try {
       setLoading(true);
+      setError(""); // Réinitialise les erreurs avant un nouvel appel
+      console.log("Initializing payment session...");
+
       const response = await fetch(
-        `http://localhost:9000/store/carts/${cartId}/payment-sessions`,
+        `http://localhost:9000/store/carts/${cartIdState}/payment-sessions`,
         {
           credentials: "include",
           method: "POST",
@@ -33,31 +37,32 @@ export default function PaymentProvidersOptions() {
       );
 
       if (!response.ok) {
-        throw new Error("Failed to initialize payment session");
+        if (response.status === 422) {
+          console.error("Payment session already initialized");
+          initialized.current = true; // Marque comme initialisé
+          setIsInitialized(true);
+        } else {
+          throw new Error("Failed to initialize payment session");
+        }
       }
+
+      initialized.current = true; // Marque comme initialisé
+      setIsInitialized(true); // Déclenche l’affichage de StripePayment
     } catch (error) {
       console.error("Error initializing payment session:", error);
+      setError("An error occurred");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    if (cartId) {
+    if (!activePaymentSession && !initialized.current) {
       initializePaymentSession();
+    } else if (activePaymentSession) {
+      setIsInitialized(true); // Si `activePaymentSession` est déjà défini
     }
-  }, [cartId]);
-
-  const getPaymentUi = useCallback(() => {
-    const activePaymentSession = cart?.payment_sessions?.[0];
-    if (!activePaymentSession) {
-      return;
-    }
-
-    if (activePaymentSession.provider_id === "stripe") {
-      return <StripePayment cartId={cartId!} />;
-    }
-  }, [cart, cartId]);
+  }, [activePaymentSession]); // Se déclenche seulement quand `activePaymentSession` change
 
   return (
     <div style={{ width: "60%" }}>
@@ -66,10 +71,10 @@ export default function PaymentProvidersOptions() {
           <div className="loader"></div>
         </div>
       )}
-      {loading ? (
-        <p>Chargement du fournisseur de paiement...</p>
-      ) : (
-        getPaymentUi()
+      {error && <p style={{ color: "red" }}>Erreur : {error}</p>}
+      {isInitialized && <StripePayment />}
+      {!loading && !isInitialized && !error && (
+        <p>Initializing payment session...</p>
       )}
     </div>
   );
