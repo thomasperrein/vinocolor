@@ -101,6 +101,20 @@ const StripeForm: React.FC = () => {
     }
   };
 
+  const isBillingComplete = () => {
+    const { firstName, lastName, address1, city, postalCode, countryCode } =
+      billingDetails;
+
+    return (
+      firstName.trim() &&
+      lastName.trim() &&
+      address1.trim() &&
+      city.trim() &&
+      postalCode.trim() &&
+      countryCode.trim()
+    );
+  };
+
   async function handlePayment(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     to_name: string
@@ -309,7 +323,7 @@ const StripeForm: React.FC = () => {
         <button
           className="stripe-payment-button"
           onClick={(e) => handlePayment(e, billingDetails.firstName)}
-          disabled={loading}
+          disabled={loading || !isBillingComplete()}
         >
           {loading
             ? t("stripe-payment.processing")

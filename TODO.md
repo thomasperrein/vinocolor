@@ -1,6 +1,6 @@
 TODO LIST :
 
-7. css formulaire payment + champ obligatoire si billing info null ou payment non ok
+7. css formulaire payment
 
 8. deploiement
 
