@@ -144,10 +144,30 @@ const Cart = () => {
             </p>
           </div>
           <button
-            className="cart-checkout"
+            className={`cart-checkout ${
+              Object.values(loadingItems).some((v) => v) ? "disabled" : ""
+            }`}
             disabled={Object.values(loadingItems).some((v) => v)}
           >
-            <a href="/checkout">{t("cart.checkout")}</a>
+            <a
+              href={
+                Object.values(loadingItems).some((v) => v)
+                  ? undefined
+                  : "/checkout"
+              }
+              className={`full-clickable-link ${
+                Object.values(loadingItems).some((v) => v)
+                  ? "disabled-link"
+                  : ""
+              }`}
+              onClick={(e) => {
+                if (Object.values(loadingItems).some((v) => v)) {
+                  e.preventDefault(); // Empêche la navigation si désactivé
+                }
+              }}
+            >
+              {t("cart.checkout")}
+            </a>
           </button>
         </div>
       ) : (

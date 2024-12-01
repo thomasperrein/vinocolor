@@ -39,6 +39,7 @@ export default function ShippingOptions({
         onSuccess: () => {
           setIsSubmitting(false);
           triggerReload();
+          onShippingOptionsUpdateSuccess();
         },
       }
     );
@@ -60,12 +61,12 @@ export default function ShippingOptions({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            onShippingOptionsUpdateSuccess();
+            handleAddShippingMethod();
           }}
         >
           <ul>
             {shipping_options.map((option) => (
-              <li key={option.id}>
+              <li key={option.id} onClick={() => setSelectedOption(option.id)}>
                 <label>
                   <input
                     type="radio"
@@ -74,7 +75,6 @@ export default function ShippingOptions({
                     checked={selectedOption === option.id}
                     onChange={() => {
                       setSelectedOption(option.id);
-                      handleAddShippingMethod();
                     }}
                   />
                   {option.name} - {getFormattedPrice(option.amount!)}

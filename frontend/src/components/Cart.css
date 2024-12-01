@@ -101,9 +101,23 @@
 
 }
 
-.cart-checkout a {
-  text-decoration: none;
-  color: white;
+.cart-checkout.disabled {
+  background-color: #ddd; /* Changer la couleur pour l'état désactivé */
+  cursor: not-allowed;
+}
+
+
+.full-clickable-link {
+  display: block; /* Rend le lien un bloc pour occuper tout l'espace */
+  width: 100%;    /* Prend toute la largeur du bouton */
+  height: 100%;   /* Prend toute la hauteur du bouton */
+  text-decoration: none; /* Supprime le soulignement */
+  color: white; /* Assure que la couleur reste cohérente */
+}
+
+.full-clickable-link.disabled-link {
+  pointer-events: none; /* Empêche les clics */
+  color: #bbb; /* Change la couleur pour indiquer l'état désactivé */
 }
 
 .cart-loading,

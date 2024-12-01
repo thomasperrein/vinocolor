@@ -7,9 +7,16 @@ import CartRecap from "./CartRecap";
 
 export default function PaymentProvidersOptions() {
   const { t } = useTranslation();
-  const { cartIdState, activePaymentSession } = useCartHomeMade();
+  const {
+    cart,
+    cartIdState,
+    activePaymentSession,
+    isLoading,
+    error,
+    reloadTrigger,
+  } = useCartHomeMade(); // Ajout de refetch
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [errorString, setError] = useState("");
   const [isInitialized, setIsInitialized] = useState(false); // Pour déclencher l'affichage de StripePayment
   const initialized = useRef(false); // Persistant entre les re-renders
 
@@ -62,7 +69,7 @@ export default function PaymentProvidersOptions() {
     } else if (activePaymentSession) {
       setIsInitialized(true); // Si `activePaymentSession` est déjà défini
     }
-  }, [activePaymentSession]); // Se déclenche seulement quand `activePaymentSession` change
+  }, [activePaymentSession, reloadTrigger]); // Se déclenche seulement quand `activePaymentSession` change
 
   return (
     <div style={{ width: "100%", display: "flex" }}>
@@ -71,17 +78,22 @@ export default function PaymentProvidersOptions() {
           <div className="loader"></div>
         </div>
       )}
-      {error && (
+      {errorString && (
         <p style={{ color: "red" }}>
-          {t("payment-providers-options.error_display")} {error}
+          {t("payment-providers-options.error_display")} {errorString}
         </p>
       )}
       {isInitialized && <StripePayment />}
-      {!loading && !isInitialized && !error && (
+      {!loading && !isInitialized && !errorString && (
         <p>{t("payment-providers-options.initializing_session")}</p>
       )}
       <div style={{ width: "40%" }}>
-        <CartRecap />
+        <CartRecap
+          cart={cart}
+          isLoading={isLoading}
+          cartIdState={cartIdState}
+          error={error}
+        />
       </div>
     </div>
   );

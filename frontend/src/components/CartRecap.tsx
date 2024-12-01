@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
 import { getFormattedPrice } from "../utils/getFormattedPrice";
 import "./CartRecap.css";
-import { useCartHomeMade } from "../CartContext";
 import { useTranslation } from "react-i18next";
+import { Cart } from "@medusajs/medusa";
 
-export default function CartRecap() {
-  const { cart, cartIdState, isLoading, error, reloadTrigger } =
-    useCartHomeMade();
+export default function CartRecap({
+  cart,
+  cartIdState,
+  isLoading,
+  error,
+}: {
+  cart: Omit<Cart, "refundable_amount" | "refunded_total"> | undefined;
+  cartIdState: string;
+  isLoading: boolean;
+  error: Error | null;
+}) {
   const [totalPrice, setTotalPrice] = useState(0);
   const { t } = useTranslation();
 
@@ -19,7 +27,7 @@ export default function CartRecap() {
       const shippingTotal = cart?.shipping_total || 0;
       setTotalPrice(cartTotal + shippingTotal);
     }
-  }, [cart?.items, cart?.shipping_total, reloadTrigger]);
+  }, [cart?.items, cart?.shipping_total]);
 
   if (cartIdState === "error") {
     return <div>{t("cart-recap.error")}</div>;

@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Checkout() {
   const navigate = useNavigate();
-  const { cartIdState } = useCartHomeMade();
+  const { cartIdState, cart, isLoading, error } = useCartHomeMade();
   const [isAddressUpdated, setIsAddressUpdated] = useState(false);
   const [isShippingOptionsUpdated, setIsShippingOptionsUpdated] =
     useState(false);
@@ -47,7 +47,12 @@ export default function Checkout() {
           />
         )}
         <div className="sidebar">
-          <CartRecap />
+          <CartRecap
+            cart={cart}
+            isLoading={isLoading}
+            error={error}
+            cartIdState={cartIdState}
+          />
         </div>
       </div>
     </>
