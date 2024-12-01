@@ -12,6 +12,7 @@ import "./common.css";
 import { COUNTRIES_AND_CODE } from "../utils/countries";
 import { useNavigate } from "react-router-dom";
 import { useCartHomeMade } from "../CartContext";
+import emailjs from "emailjs-com";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_PUBLIC_STRIPE_KEY || "temp"
@@ -101,12 +102,22 @@ const StripeForm: React.FC = () => {
   };
 
   async function handlePayment(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    to_name: string
   ) {
     e.preventDefault();
     const card = elements?.getElement(CardElement);
 
     if (!stripe || !elements || !card || !cart || !clientSecret) {
+      return;
+    }
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_WHEN_ORDER;
+    const publicKey = import.meta.env.VITE_EMAILJS_API_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS environment variables are missing.");
       return;
     }
 
@@ -150,11 +161,23 @@ const StripeForm: React.FC = () => {
           }
         )
           .then((res) => res.json())
-          .then(({ type, cart, error }) => {
-            if (type === "cart" && cart) {
+          .then(({ type, data, error }) => {
+            if (error) {
               console.error(error);
-            } else if (type === "order") {
+              return;
+            }
+            if (type === "order") {
               handleCartIdChange(undefined);
+              emailjs.send(
+                serviceId,
+                templateId,
+                {
+                  to_name: to_name,
+                  email: data.email,
+                  order_id: data.id,
+                },
+                publicKey
+              );
               navigate(`/success-order`);
             }
           });
@@ -285,7 +308,7 @@ const StripeForm: React.FC = () => {
 
         <button
           className="stripe-payment-button"
-          onClick={handlePayment}
+          onClick={(e) => handlePayment(e, billingDetails.firstName)}
           disabled={loading}
         >
           {loading
