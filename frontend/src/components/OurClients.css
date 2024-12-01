@@ -1,11 +1,13 @@
 .clients {
   width: 100%;
-  height: 350px;
+  height: auto; /* Hauteur automatique pour s'adapter au contenu */
   background: #fff;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 20px;
+  flex-wrap: wrap; /* Permet d'organiser les éléments sur plusieurs lignes si nécessaire */
+  padding: 20px 0; /* Espacement en haut et en bas */
+  gap: 20px; /* Ajout d'espacement entre les clients */
 }
 
 .client-level {
@@ -16,13 +18,12 @@
 
 /* Ajustements de baseline pour chaque niveau */
 .level-1 {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .level-2 {
   margin-top: 110px;
 }
-
 
 .title {
   font-family: Zodiak;
@@ -32,4 +33,42 @@
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+  margin-bottom: 30px; /* Espacement entre le titre et la liste des clients */
+}
+
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 768px) {
+  .clients {
+    flex-direction: column; /* Réorganisation verticale */
+    align-items: center; /* Centrage des éléments */
+    justify-content: center;
+    gap: 30px; /* Augmentation de l'espacement entre les éléments */
+  }
+
+  .client-level {
+    width: 100%; /* Largeur augmentée pour mieux occuper l'espace */
+    margin-top: 0; /* Suppression des marges additionnelles */
+  }
+
+  .title {
+    font-size: 40px; /* Réduction de la taille de la police */
+    line-height: 60px;
+    text-align: center; /* Centrage du titre */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  .clients {
+    gap: 15px; /* Réduction de l'espacement entre les clients */
+  }
+
+  .client-level {
+    width: 100%; /* Les clients prennent toute la largeur */
+  }
+
+  .title {
+    font-size: 32px; /* Taille de la police plus petite */
+    line-height: 50px;
+  }
 }

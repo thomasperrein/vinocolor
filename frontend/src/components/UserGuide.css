@@ -1,22 +1,50 @@
-.steps{
-    width: 100%;
-    height: 507px;
-    gap: 0px;
-    opacity: 0px;
-    background: #FAFAFA;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 20px;
+.steps {
+  width: 100%;
+  height: 100%; /* Hauteur automatique pour s'adapter au contenu */
+  gap: 20px; /* Espacement entre les éléments */
+  background: #FAFAFA;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 20px;
 }
 
-.title{
-    font-family: Zodiak;
-    font-size: 56px;
-    font-weight: 540;
-    line-height: 75.04px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+.title {
+  font-family: Zodiak;
+  font-size: 56px;
+  font-weight: 540;
+  line-height: 75.04px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 30px; /* Ajout d'un espacement entre le titre et les étapes */
 }
 
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 768px) {
+  .steps {
+    flex-direction: column; /* Les éléments s'empilent verticalement */
+    align-items: center; /* Centrage des éléments */
+    gap: 30px; /* Espacement plus important entre les éléments */
+    padding: 20px; /* Réduction des marges internes */
+  }
+
+  .title {
+    font-size: 40px; /* Réduction de la taille de la police */
+    line-height: 60px; /* Ajustement de l'interligne */
+    text-align: center; /* Centrage du titre */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  .steps {
+    gap: 20px; /* Espacement réduit pour les très petits écrans */
+    padding: 10px; /* Réduction des marges internes */
+  }
+
+  .title {
+    font-size: 32px; /* Taille de la police plus petite */
+    line-height: 50px;
+  }
+}

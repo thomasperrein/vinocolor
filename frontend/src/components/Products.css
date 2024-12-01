@@ -1,23 +1,58 @@
 .products {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* Permet aux produits de passer sur plusieurs lignes */
+  justify-content: space-around;
+  gap: 20px; /* Espacement entre les produits */
+  padding: 20px 0; /* Espacement en haut et en bas */
 }
 
-.product-section{
-    margin-right: 92px;
-    margin-left: 92px;
-    margin-bottom: 50px;
+.product-section {
+  margin: 0 92px 50px 92px; /* Marges latérales et espacements */
 }
 
 .product-section h1 {
-    font-family: Zodiak;
-    font-size: 56px;
-    font-weight: 540;
-    line-height: 75.04px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  font-family: Zodiak;
+  font-size: 56px;
+  font-weight: 540;
+  line-height: 75.04px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 30px; /* Espacement entre le titre et les produits */
+}
+
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 768px) {
+  .products {
+    flex-direction: column; /* Les produits s'affichent verticalement */
+    align-items: center; /* Centrage des produits */
+    gap: 30px; /* Espacement entre les produits */
+  }
+
+  .product-section {
+    margin: 0 20px 30px 20px; /* Réduction des marges latérales */
+  }
+
+  .product-section h1 {
+    font-size: 40px; /* Réduction de la taille de la police */
+    line-height: 60px; /* Ajustement de l’interligne */
+    text-align: center; /* Centrage du titre */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  .products {
+    gap: 20px; /* Espacement réduit entre les produits */
+  }
+
+  .product-section h1 {
+    font-size: 32px; /* Taille de la police encore plus petite */
+    line-height: 50px;
+  }
+
+  .product-section {
+    margin: 0 10px 20px 10px; /* Marges encore réduites */
+  }
 }

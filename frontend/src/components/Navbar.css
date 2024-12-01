@@ -29,9 +29,13 @@ ul.nav-list li {
   margin-right: 40px;
 }
 
+ul.nav-list li:last-child {
+  margin-right: 0;
+}
+
 ul.nav-list li a {
   text-decoration: none; /* Retire le soulignement des liens */
-  color: inherit; /* Utilise la couleur parente, ou remplacez par une couleur spécifique */
+  color: inherit; /* Utilise la couleur parente */
 }
 
 select.language-select {
@@ -40,8 +44,8 @@ select.language-select {
 
 .cart-badge {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 0;
+  right: 0;
   background-color: var(--primary-color);
   color: white;
   font-size: 12px;
@@ -52,4 +56,46 @@ select.language-select {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Réorganisation verticale pour les petits écrans */
+    align-items: flex-start;
+    padding: 20px; /* Ajout de padding pour une meilleure lisibilité */
+  }
+
+  ul.nav-list {
+    flex-direction: column; /* Réorganisation verticale des items */
+    width: 100%; /* S'étend sur toute la largeur */
+    margin-bottom: 20px;
+  }
+
+  ul.nav-list li {
+    margin-bottom: 10px; /* Espacement entre les liens */
+    margin-right: 0; /* Supprime les marges latérales */
+  }
+
+  ul.nav-list li a {
+    font-size: 16px; /* Ajuste la taille des liens pour plus de lisibilité */
+  }
+
+  .nav-left,
+  .nav-right {
+    margin: 0; /* Supprime les marges externes */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  ul.nav-list li a {
+    font-size: 14px; /* Réduit encore la taille de la police pour les très petits écrans */
+  }
+
+  .cart-badge {
+    width: 18px;
+    height: 18px;
+    font-size: 10px; /* Réduction de la taille de la cart-badge */
+  }
 }

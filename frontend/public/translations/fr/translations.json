@@ -14,7 +14,7 @@
         "error": "Erreur",
         "loading": "Chargement...",
         "items_in_cart": "Articles dans le panier",
-        "prince": "Prix"
+        "price": "Prix"
     },
     "cart-recap": {
         "error": "Erreur : aucun panier trouvé.",
@@ -24,7 +24,7 @@
         "product-title": "Produit",
         "product-quantity": "Quantité",
         "total-price": "Prix",
-        "shipping-price": "Frais de livraison",
+        "shipping": "Frais de livraison",
         "total": "Total",
         "empty": "Votre panier est vide"
     },
@@ -89,7 +89,9 @@
         "quantity": "Quantité",
         "add_to_cart": "Ajouter au panier",
         "remove_from_cart": "Retirer du panier",
-        "loading": "Chargement..."
+        "loading": "Chargement...",
+        "adding_to_cart": "Ajout au panier...",
+        "item_added_success": "Produit ajouté au panier !"
     },
     "product-item": {
         "alt_product_image": "Image du produit",
@@ -159,6 +161,9 @@
             "2": "Mélangez la poudre de couleur VINOCOLOR avec de l'eau en quantités précises (1 litre d'eau pour 100 grammes de poudre de couleur).",
             "3": "Prenez une éponge ou un pinceau et brossez soigneusement le centre des tonneaux."
         }
+    },
+    "user-guide-item":{
+        "step": "Étape"
     },
     "why-vino": {
         "title": "Pourquoi utiliser Vinocolor ?",

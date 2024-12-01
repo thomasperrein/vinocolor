@@ -1,17 +1,47 @@
-.title{
-    font-family: Zodiak;
-    font-size: 56px;
-    font-weight: 540;
-    line-height: 75.04px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+.title {
+  font-family: Zodiak;
+  font-size: 56px;
+  font-weight: 540;
+  line-height: 75.04px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-bottom: 30px; /* Espacement entre le titre et le contenu */
 }
 
-.international-distributor{
-    padding-top: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.international-distributor {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px; /* Ajout d’espacement entre les éléments */
+}
+
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 768px) {
+  .title {
+    font-size: 40px; /* Réduction de la taille de la police */
+    line-height: 60px;
+    text-align: center; /* Centrage du titre */
+  }
+
+  .international-distributor {
+    flex-direction: column; /* Réorganisation verticale */
+    align-items: center; /* Centrage des éléments */
+    gap: 20px; /* Réduction de l’espacement */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  .title {
+    font-size: 32px; /* Taille de la police encore plus petite */
+    line-height: 50px;
+  }
+
+  .international-distributor {
+    gap: 15px; /* Réduction supplémentaire de l’espacement */
+    padding: 10px 0; /* Réduction des marges verticales */
+  }
 }

@@ -1,20 +1,44 @@
-.socials{
-    margin-left: 92px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-right: 92px;
-    max-width: 100%
+.socials {
+  margin-left: 92px;
+  margin-right: 92px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  gap: 20px
 }
 
 .socials p {
-    font-family: Recia;
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 35.5px;
-    text-align: left;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-
+  font-family: Recia;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 35.5px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  margin-right: 20px; /* Ajout d'un espacement à droite */
 }
 
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 1200px) {
+  .socials {
+    flex-direction: column; /* Réorganisation verticale */
+    margin-left: 20px; /* Réduction des marges latérales */
+    margin-right: 20px;
+    text-align: center; /* Centrer le texte et les icônes */
+  }
+
+  .socials p {
+    font-size: 20px; /* Réduction de la taille de la police */
+    line-height: 30px;
+    margin-bottom: 15px; /* Espacement entre le texte et les icônes */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  .socials p {
+    font-size: 16px; /* Réduction supplémentaire de la taille de la police */
+    line-height: 25px;
+  }
+}

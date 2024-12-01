@@ -14,7 +14,7 @@
         "error": "Error",
         "loading": "Loading...",
         "items_in_cart" : "Items in cart",
-        "prince": "Price"
+        "price": "Price"
     },
     "cart-recap": {
         "error" : "Error: no cart found.",
@@ -24,7 +24,7 @@
         "product-title": "Product",
         "product-quantity": "Quantity",
         "total-price": "Price",
-        "shipping-price": "Shipping price",
+        "shipping": "Shipping price",
         "total": "Total",
         "empty": "Your cart is empty"
     },
@@ -89,7 +89,9 @@
         "quantity": "Quantity",
         "add_to_cart": "Add to cart",
         "remove_from_cart": "Remove from cart",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "adding_to_cart": "Adding to cart...",
+        "item_added_success": "Item added to cart"
     },
     "product-item": {
         "alt_product_image": "Product image",
@@ -159,6 +161,9 @@
             "2": "Mix VINOCOLOR colour powder with water in precise quantities (1 litre of water for 100 grams of colour powder).",
             "3": "Take a sponge or brush and brush the centre of the barrels carefully."
         }
+    },
+    "user-guide-item":{
+        "step": "Step"
     },
     "why-vino": {
         "title": "Why use Vinocolor?",

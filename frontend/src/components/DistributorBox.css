@@ -1,35 +1,80 @@
-.distributor-box{
-    width: 507px;
-    height: 702px;
-    gap: 0px;
-    border-radius: 25px;
-    opacity: 0px;
-    padding: 20px;
-    padding-top: 70px;
-    box-shadow: 0px 0px 15px 0px var(--secondary-color);
-    background: #FAFAFA;
+.distributor-box {
+  width: 507px;
+  height: auto; /* Ajustement automatique de la hauteur */
+  gap: 0px;
+  border-radius: 25px;
+  padding: 20px;
+  padding-top: 50px; /* Ajustement du padding supérieur */
+  box-shadow: 0px 0px 15px 0px var(--secondary-color);
+  background: #FAFAFA;
+  margin: 20px auto; /* Centrer la boîte */
 }
 
 .distributor-box p {
-    margin-left: 10px;
-    font-family: Recia;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 28.4px;
-    text-align: justified;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  margin: 10px 10px 20px 10px; /* Espacement autour du texte */
+  font-family: Recia;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28.4px;
+  text-align: justify;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.distributor-box ul {
+  padding-left: 10px; /* Réduction de l’indentation */
 }
 
 .distributor-box ul li {
-    padding: 18px;
-    margin-left: 20px;
-    font-family: Recia;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 28.4px;
-    text-align: justified;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+  padding: 18px;
+  margin-left: 20px;
+  font-family: Recia;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28.4px;
+  text-align: justify;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
 
+/* Responsivité pour tablettes et petits écrans */
+@media (max-width: 768px) {
+  .distributor-box {
+    width: 90%; /* La boîte prend 90% de la largeur */
+    padding: 15px; /* Réduction des paddings */
+    padding-top: 30px;
+    border-radius: 20px; /* Rayon des bords réduit */
+  }
+
+  .distributor-box p {
+    font-size: 18px; /* Réduction de la taille de la police */
+    line-height: 25px;
+  }
+
+  .distributor-box ul li {
+    font-size: 18px; /* Ajustement de la taille de la police */
+    line-height: 25px;
+    padding: 15px; /* Réduction des paddings */
+  }
+}
+
+/* Responsivité pour les très petits écrans */
+@media (max-width: 480px) {
+  .distributor-box {
+    width: 100%; /* La boîte prend toute la largeur */
+    padding: 10px;
+    padding-top: 20px;
+    box-shadow: 0px 0px 10px 0px var(--secondary-color); /* Réduction de l’ombre */
+  }
+
+  .distributor-box p {
+    font-size: 16px; /* Réduction supplémentaire de la taille de la police */
+    line-height: 22px;
+  }
+
+  .distributor-box ul li {
+    font-size: 16px;
+    line-height: 22px;
+    padding: 10px; /* Padding plus petit */
+  }
 }

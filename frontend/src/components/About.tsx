@@ -18,16 +18,16 @@ export default function About() {
       />
       <section className="about-section">
         <AboutItem
-          title={t("about.section1.title")}
-          subtitle={t("about.section1.subtitle")}
-          description={t("about.section1.description")}
+          title={t("about.item1.title")}
+          subtitle={t("about.item1.subtitle")}
+          description={t("about.item1.description")}
           srcImage={about1svg}
           imagePosition={ImagePositionEnum.Right}
         />
         <AboutItem
-          title={t("about.section2.title")}
-          subtitle={t("about.section2.subtitle")}
-          description={t("about.section2.description")}
+          title={t("about.item2.title")}
+          subtitle={t("about.item2.subtitle")}
+          description={t("about.item2.description")}
           srcImage={about2svg}
           imagePosition={ImagePositionEnum.Left}
         />
