@@ -62,7 +62,7 @@ function ShippingAddress({
       const email = import.meta.env.VITE_EMAIL_SUPERUSER;
 
       const tokenResponse = await fetch(
-        `http://localhost:9000/admin/auth/token`,
+        `${import.meta.env.VITE_REACT_APP_MEDUSA_API_URL}/admin/auth/token`,
         {
           credentials: "include",
           method: "POST",
@@ -87,7 +87,9 @@ function ShippingAddress({
         let customerId: string | undefined;
 
         const findCustomerResponse = await fetch(
-          `http://localhost:9000/admin/customers?limit=1&q=${customer.email}`,
+          `${
+            import.meta.env.VITE_REACT_APP_MEDUSA_API_URL
+          }/admin/customers?limit=1&q=${customer.email}`,
           {
             method: "GET",
             headers: {
@@ -106,7 +108,7 @@ function ShippingAddress({
 
         if (!customerId) {
           const createCustomerResponse = await fetch(
-            `http://localhost:9000/admin/customers`,
+            `${import.meta.env.VITE_REACT_APP_MEDUSA_API_URL}/admin/customers`,
             {
               method: "POST",
               headers: {
@@ -138,7 +140,9 @@ function ShippingAddress({
       // Mise à jour du panier
       const cartPromise = customerPromise.then(async (customerId) => {
         const cartResponse = await fetch(
-          `http://localhost:9000/store/carts/${cartId}`,
+          `${
+            import.meta.env.VITE_REACT_APP_MEDUSA_API_URL
+          }/store/carts/${cartId}`,
           {
             method: "POST",
             credentials: "include",

@@ -17,8 +17,6 @@ export default function Product() {
   const [modalImage, setModalImage] = useState("");
   const [isAdding, setIsAdding] = useState(false);
 
-  console.log(product);
-
   const {
     createCart,
     cartIdState,

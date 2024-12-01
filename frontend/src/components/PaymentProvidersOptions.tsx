@@ -28,7 +28,9 @@ export default function PaymentProvidersOptions() {
       setError(""); // Réinitialise les erreurs avant un nouvel appel
 
       const response = await fetch(
-        `http://localhost:9000/store/carts/${cartIdState}/payment-sessions`,
+        `${
+          import.meta.env.VITE_REACT_APP_MEDUSA_API_URL
+        }/store/carts/${cartIdState}/payment-sessions`,
         {
           credentials: "include",
           method: "POST",

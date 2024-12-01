@@ -63,7 +63,9 @@ const StripeForm: React.FC = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:9000/store/carts/${cartIdState}`,
+        `${
+          import.meta.env.VITE_REACT_APP_MEDUSA_API_URL
+        }/store/carts/${cartIdState}`,
         {
           method: "POST",
           credentials: "include",
@@ -134,7 +136,9 @@ const StripeForm: React.FC = () => {
         }
         setLoading(true);
         await fetch(
-          `http://localhost:9000/store/carts/${cartIdState}/complete`,
+          `${
+            import.meta.env.VITE_REACT_APP_MEDUSA_API_URL
+          }/store/carts/${cartIdState}/complete`,
           {
             method: "POST",
             credentials: "include",

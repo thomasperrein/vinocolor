@@ -24,7 +24,7 @@ const App = () => {
   return (
     <MedusaProvider
       queryClientProviderProps={{ client: queryClient }}
-      baseUrl="http://localhost:9000"
+      baseUrl={import.meta.env.VITE_REACT_APP_MEDUSA_API_URL}
       publishableApiKey={
         import.meta.env.VITE_REACT_APP_MEDUSA_PUBLISHABLE_API_KEY
       }
