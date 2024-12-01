@@ -91,7 +91,8 @@
         "remove_from_cart": "Retirer du panier",
         "loading": "Chargement...",
         "adding_to_cart": "Ajout au panier...",
-        "item_added_success": "Produit ajouté au panier !"
+        "item_added_success": "Produit ajouté au panier !",
+        "out_of_stock": "Épuisé"
     },
     "product-item": {
         "alt_product_image": "Image du produit",

@@ -91,7 +91,8 @@
         "remove_from_cart": "Remove from cart",
         "loading": "Loading...",
         "adding_to_cart": "Adding to cart...",
-        "item_added_success": "Item added to cart"
+        "item_added_success": "Item added to cart",
+        "out_of_stock": "Out of stock" 
     },
     "product-item": {
         "alt_product_image": "Product image",

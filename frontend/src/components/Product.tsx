@@ -17,6 +17,8 @@ export default function Product() {
   const [modalImage, setModalImage] = useState("");
   const [isAdding, setIsAdding] = useState(false);
 
+  console.log(product);
+
   const {
     createCart,
     cartIdState,
@@ -105,9 +107,14 @@ export default function Product() {
                     }
                   }
                 }}
-                disabled={isAdding}
+                disabled={
+                  isAdding ||
+                  (product.variants[0]?.inventory_quantity ?? 0) <= 0
+                }
               >
-                {isAdding
+                {(product.variants[0]?.inventory_quantity ?? 0) <= 0
+                  ? t("product.out_of_stock")
+                  : isAdding
                   ? t("product.adding_to_cart")
                   : t("product.add_to_cart")}
               </button>
